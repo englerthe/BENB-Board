@@ -1,5 +1,7 @@
 import React from 'react';
 import NavBar from './components/NavBar';
+import Categories from './components/Categories';
+import Userdetails from './components/Userdetails';
 import Login from './components/Login';
 import Register from './components/Register';
 import ShowAssets from './components/ShowAssets';
@@ -49,14 +51,19 @@ export default class App extends React.PureComponent<IProps> {
   render() {
     window.CS.log("App --> render()")
     return (
-      <>
-        <NavBar />
+      <div className="container-body">
+        <NavBar /> {/* oben  */}
+        <div className="container-main-content"> {/* mitte */}
+        <div><Categories /></div> {/* mitte links */}
         <Switch>
           <Route path="/showassets" component={ShowAssets} />
-          <Route path="/register" component={Register} />
+          <Route path="/register" component={Register} /> {/* mitte mitte */}
           <Route path="/" component={Login} />
         </Switch>
-      </>
+        <div><Userdetails /></div> {/* mitte rechts */}
+        </div>
+        <div className="footer">Footer</div> {/* unten */}
+      </div>
     );
   }
 
