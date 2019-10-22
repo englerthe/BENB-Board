@@ -3,7 +3,9 @@ export interface IUser {
     lastname:string;
     username:string;
     password:string;
+    email: string;
 }
+
 
 export interface ILogin{
     errorMessage:string;
@@ -17,15 +19,25 @@ export interface IUI {
     Login: ILogin;
 }
 
-export interface IAssetData {
+export interface IAdvertiseData {
     _id: string;
-    asset_name: string;
-    asset_value: number;
+    advertise_type: string;
+    advertise_category: [];
+    advertise_description: string;
+    advertise_price: string;
+    advertise_pictureUrl: string;
+    advertise_owner: string;
+    advertise_comment: string;
+    advertise_counter: number;
+    advertise_status: string;
+    advertise_message: string;
+    advertise_city: string;
   }
+
 
 export interface IBM{
     user:IUser;
-    assets:IAssetData[]
+    advertises:IAdvertiseData[]
 }
 
 
@@ -47,8 +59,9 @@ export const initial:IState = {
             firstname:"",
             lastname:"",
             username:"",
-            password:""
+            password:"",
+            email: ""
         },
-        assets:[]
+        advertises:[]
 	}
 };

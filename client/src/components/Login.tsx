@@ -29,7 +29,7 @@ reducerFunctions[ActionType.user_logged_out] = function (newState: IState, actio
     newState.UI.waitingForResponse = false;
     newState.UI.Login.errorMessage = "";
     newState.UI.loggedIn = false;
-    newState.BM.user = {lastname:"",firstname:"",username:"",password:""};
+    newState.BM.user = {lastname:"",firstname:"",username:"",password:"",email:""};
     return newState
 }
 
@@ -101,7 +101,7 @@ export default class Login extends Component {
                         user: data as IUser
                     }
                     window.CS.clientAction(loggedinAction);
-                    history.push("/showassets");
+                    history.push("/showadvertises");
                 }
             });
     }

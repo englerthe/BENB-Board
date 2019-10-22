@@ -6,13 +6,13 @@ export enum ActionType {
     update_user = "update_user",
     user_created = "user_created",
     user_exists = "user_exists",
-    create_asset = "create_asset",
-    update_asset = "update_asset",
-    delete_asset = "delete_asset",
+    create_advertise = "create_advertise",
+    update_advertise = "update_advertise",
+    delete_advertise = "delete_advertise",
     render_test = "render_test",
     server_called = "server_called",
-    asset_updated = "asset_updated",
-    add_assets_from_server = "add_assets_from_server" 
+    advertise_updated = "advertise_updated",
+    add_advertises_from_server = "add_advertises_from_server" 
 }
 export interface IAction {
     type: ActionType;

@@ -4,10 +4,10 @@ import Categories from './components/Categories';
 import Userdetails from './components/Userdetails';
 import Login from './components/Login';
 import Register from './components/Register';
-import ShowAssets from './components/ShowAssets';
+import ShowAllAdvertises from './components/ShowAllAdvertises';
 import { Switch, Route } from 'react-router-dom';
 import { IAction, ActionType } from './framework/IAction';
-import { IAssetData, IState } from './state/appState'
+import { IAdvertiseData, IState } from './state/appState'
 import axios from 'axios';
 import { reducerFunctions } from './reducer/appReducer';
 
@@ -18,16 +18,16 @@ interface IProps {
   stateCounter: number
 }
 
-export interface IAssetsLoadedAction extends IAction {
-  assets: IAssetData[]
+export interface IAdvertisesLoadedAction extends IAction {
+  advertises: IAdvertiseData[]
 }
 reducerFunctions[ActionType.server_called] = function (newState: IState, action: IAction) {
   newState.UI.waitingForResponse = true;
   return newState;
 }
-reducerFunctions[ActionType.add_assets_from_server] = function (newState: IState, action: IAssetsLoadedAction) {
+reducerFunctions[ActionType.add_advertises_from_server] = function (newState: IState, action: IAdvertisesLoadedAction) {
   newState.UI.waitingForResponse = false;
-  newState.BM.assets = action.assets;
+  newState.BM.advertises = action.advertises;
   return newState;
 }
 export default class App extends React.PureComponent<IProps> {
@@ -37,12 +37,12 @@ export default class App extends React.PureComponent<IProps> {
       type: ActionType.server_called
     }
     window.CS.clientAction(uiAction);
-    axios.get('/assets/read').then(response => {
+    axios.get('/advertises/read').then(response => {
       console.log("this data was loaded as a result of componentDidMount:");
       console.log(response.data);
-      const responseAction: IAssetsLoadedAction = {
-        type: ActionType.add_assets_from_server,
-        assets: response.data as IAssetData[]
+      const responseAction: IAdvertisesLoadedAction = {
+        type: ActionType.add_advertises_from_server,
+        advertises: response.data as IAdvertiseData[]
       }
       window.CS.clientAction(responseAction);
     }).catch(function (error) { console.log(error); })
@@ -54,13 +54,16 @@ export default class App extends React.PureComponent<IProps> {
       <div className="container-body">
         <NavBar /> {/* oben  */}
         <div className="container-main-content"> {/* mitte */}
-        <div><Categories /></div> {/* mitte links */}
-        <Switch>
-          <Route path="/showassets" component={ShowAssets} />
-          <Route path="/register" component={Register} /> {/* mitte mitte */}
-          <Route path="/" component={Login} />
-        </Switch>
-        <div><Userdetails /></div> {/* mitte rechts */}
+          <div><Categories /></div> {/* mitte links */}
+          <Switch>
+            <Route path="/showadvertises" component={ShowAllAdvertises} />
+            <Route path="/register" component={Register} /> {/* mitte mitte */}
+
+          </Switch>
+          <div>
+            <Route path="/" component={Login} />
+            <Userdetails />
+          </div> {/* mitte rechts */}
         </div>
         <div className="footer">Footer</div> {/* unten */}
       </div>
