@@ -21,6 +21,7 @@ export interface IUI {
 
 export interface IAdvertiseData {
     _id: string;
+    advertise_title: string;
     advertise_type: string;
     advertise_category: [];
     advertise_description: string;

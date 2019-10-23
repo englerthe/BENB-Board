@@ -28,6 +28,7 @@ reducerFunctions[ActionType.advertise_updated] = function (newState: IState, upd
 reducerFunctions[ActionType.update_advertise] = function (newState: IState, updateAction: IAdvertiseAction) {
     let advertiseToChange: IAdvertiseData[] = newState.BM.advertises.filter(advertise => advertise._id === updateAction.advertise._id)
     console.log(advertiseToChange);
+    advertiseToChange[0].advertise_title = updateAction.advertise.advertise_title;
     advertiseToChange[0].advertise_type = updateAction.advertise.advertise_type;
     advertiseToChange[0].advertise_description = updateAction.advertise.advertise_description;
     advertiseToChange[0].advertise_category = updateAction.advertise.advertise_category;
@@ -71,12 +72,24 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
         if (this.state.edit_mode)
             return (
                 <div>
-                <p>Type: <input type="text" name="type" value={this.props.advertise.advertise_type} onChange={this.handleNameChange} /></p>
+                <p>Title: <input type="text" name="title" value={this.props.advertise.advertise_title} onChange={this.handleNameChange} /></p>
+               <div>
+               <label htmlFor="type">Choose a Type: </label>
+                <input type="radio" name="type" value="offer"  /> offer
+                 <input type="radio" name="type" value="search"  /> search
+            </div>
+               
+                {/*<p>Type: <input type="text" name="type" value={this.props.advertise.advertise_type} onChange={this.handleNameChange} /></p>*/}
                 <p>Description: <input type="text" name="description" value={this.props.advertise.advertise_description} onChange={this.handleNameChange} /></p>
                 <p>Category: <input type="text" name="category" value={this.props.advertise.advertise_category} onChange={this.handleNameChange} /></p>
                 <p>Price: <input type="text" name="price" value={this.props.advertise.advertise_price} onChange={this.handleNameChange} /></p>
                 <p>Picture: <input type="text" name="pictureUrl" value={this.props.advertise.advertise_pictureUrl} onChange={this.handleNameChange} /></p>
-                <p>Status: <input type="text" name="status" value={this.props.advertise.advertise_status} onChange={this.handleNameChange} /></p>
+                <div>
+               <label htmlFor="type">Choose a Status: </label>
+                <input type="radio" name="type" value="available" /> available
+                 <input type="radio" name="type" value="sold" /> sold
+            </div>
+                {/*<p>Status: <input type="text" name="status" value={this.props.advertise.advertise_status} onChange={this.handleNameChange} /></p>*/}
                 <p>City: <input type="text" name="city" value={this.props.advertise.advertise_city} onChange={this.handleNameChange} /></p>
                 <p>
                 <button onClick={this.handleSave} id={this.props.advertise._id}>save</button>
@@ -88,6 +101,7 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
             return (
 
                 <div>
+                    <p>Title: {this.props.advertise.advertise_title}</p>
                     <p>Type: {this.props.advertise.advertise_type}</p>
                     <p>Description: {this.props.advertise.advertise_description}</p>
                     <p>Category: {this.props.advertise.advertise_category}</p>

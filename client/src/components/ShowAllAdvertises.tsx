@@ -50,6 +50,7 @@ export default class ShowAllAdvertises extends Component<IProps, IJSXState> {
         window.CS.clientAction(uiAction);
         const newAdvertise: IAdvertiseData = {
           _id: mongoose.Types.ObjectId().toString(),
+          advertise_title:"",
           advertise_type:"offer",
           advertise_description: "",
           advertise_category: [],
