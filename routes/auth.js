@@ -6,36 +6,44 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
-
-
-
 router.post("/signup", (req, res) => {
   const firstname = req.body.firstname;
   const lastname = req.body.lastname;
   const username = req.body.username;
   const userPassword = req.body.password;
+  const email = req.body.email;
 
+  if (firstname === "" || lastname === "" || username === "" || userPassword === "" || email === "") { //check if post values are not empty
+    res.status(200).json({ errorMessage: 'Please fill in all necessary fields to sign up' });
+    return;
+  }
+  else {
+    User.findOne({ username }, "username", (err, user) => {
+      if (user !== null) {
+        console.log("User with username exists already:" + username);
+        res.status(200).json({ errorMessage: 'this user already exists' });
+        return;
+      }
+      /* else
+        if (email !== null) {
+        console.log("User with email exists already:" + username);
+        res.status(200).json({ errorMessage: 'this email is already registered' });
+        return;
+      }>*/
+      const salt = bcrypt.genSaltSync(bcryptSalt);
+      const password = bcrypt.hashSync(userPassword, salt);
 
-  User.findOne({ username }, "username", (err, user) => {
-    if (user !== null) {
-      console.log("User with username exists already:"+username);
-      res.status(200).json({ 'errormessage': 'this user already exists' });
-      return;
-    }
+      const userPassworEncrypted = { username, password, firstname, lastname, email };
+      console.log("User will be created:" + userPassworEncrypted);
 
-    const salt     = bcrypt.genSaltSync(bcryptSalt);
-    const password = bcrypt.hashSync(userPassword, salt);
-
-    const userPassworEncrypted = {username, password, firstname, lastname};
-    console.log("User will be created:"+userPassworEncrypted);
-
-    User
-      .create(userPassworEncrypted)
-      .then((user) => {
-        res.status(200).json(user);
-      })
-      .catch(err => console.log(err));
-  });
+      User
+        .create(userPassworEncrypted)
+        .then((user) => {
+          res.status(200).json(user);
+        })
+        .catch(err => console.log(err));
+    });
+  }
 });
 
 
@@ -59,15 +67,15 @@ router.post("/login", (req, res) => {
 
 
 router.get("/logout", (req, res, next) => {
-  if (!req.session.currentUser) { 
-    res.status(200).json({ errorMessage: "logged out" }); 
-    return; 
+  if (!req.session.currentUser) {
+    res.status(200).json({ errorMessage: "logged out" });
+    return;
   }
-  req.session.destroy( err => {
-    if (err) { 
-      console.log(err); 
-    } else { 
-      res.status(200).json({ errorMessage: "logged out" }); 
+  req.session.destroy(err => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.status(200).json({ errorMessage: "logged out" });
     }
   });
 });
