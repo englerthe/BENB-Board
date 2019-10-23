@@ -3,6 +3,7 @@ import NavBar from './components/NavBar';
 import Categories from './components/Categories';
 import Userdetails from './components/Userdetails';
 import Login from './components/Login';
+import Home from './components/Home';
 import Register from './components/Register';
 import ShowAllAdvertises from './components/ShowAllAdvertises';
 import { Switch, Route } from 'react-router-dom';
@@ -58,10 +59,10 @@ export default class App extends React.PureComponent<IProps> {
           <Switch>
             <Route path="/showadvertises" component={ShowAllAdvertises} />
             <Route path="/register" component={Register} /> {/* mitte mitte */}
-
+            <Route path="/" component={Home} />
           </Switch>
           <div>
-            <Route path="/" component={Login} />
+            <Route path="/login" component={Login} />
             <Userdetails />
           </div> {/* mitte rechts */}
         </div>

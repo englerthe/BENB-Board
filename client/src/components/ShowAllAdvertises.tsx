@@ -55,16 +55,13 @@ export default class ShowAllAdvertises extends Component<IProps, IJSXState> {
         window.CS.clientAction(uiAction);
         const newAdvertise: IAdvertiseData = {
           _id: mongoose.Types.ObjectId().toString(),
-          advertise_type:"",
+          advertise_type:"offer",
           advertise_description: "",
           advertise_category: [],
           advertise_price: "",
           advertise_pictureUrl: "",
-          advertise_owner: "",
-          advertise_comment: "",
           advertise_counter: 0,
-          advertise_status: "",
-          advertise_message: "",
+          advertise_status: "available",
           advertise_city: ""
         }
         const action: IAdvertiseAction = {
@@ -74,7 +71,7 @@ export default class ShowAllAdvertises extends Component<IProps, IJSXState> {
         axios.post('/advertises/add', newAdvertise)
         .then(res => {
           window.CS.clientAction(action);
-          console.log(res.data)
+          console.log('test:', res.data)
         });
       }
 }

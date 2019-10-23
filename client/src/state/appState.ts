@@ -26,11 +26,11 @@ export interface IAdvertiseData {
     advertise_description: string;
     advertise_price: string;
     advertise_pictureUrl: string;
-    advertise_owner: string;
-    advertise_comment: string;
+    advertise_owner?: string;
+    advertise_comment?: string;
     advertise_counter: number;
     advertise_status: string;
-    advertise_message: string;
+    advertise_message?: string;
     advertise_city: string;
   }
 
