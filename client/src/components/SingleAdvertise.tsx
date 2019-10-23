@@ -30,7 +30,7 @@ reducerFunctions[ActionType.update_advertise] = function (newState: IState, upda
     console.log(advertiseToChange);
     advertiseToChange[0].advertise_type = updateAction.advertise.advertise_type;
     advertiseToChange[0].advertise_description = updateAction.advertise.advertise_description;
-    /*advertiseToChange[0].advertise_category = updateAction.advertise.advertise_category;
+    advertiseToChange[0].advertise_category = updateAction.advertise.advertise_category;
     advertiseToChange[0].advertise_price = updateAction.advertise.advertise_price;
     advertiseToChange[0].advertise_pictureUrl = updateAction.advertise.advertise_pictureUrl;
     advertiseToChange[0].advertise_owner = updateAction.advertise.advertise_owner;
@@ -38,7 +38,7 @@ reducerFunctions[ActionType.update_advertise] = function (newState: IState, upda
     advertiseToChange[0].advertise_counter = updateAction.advertise.advertise_counter;
     advertiseToChange[0].advertise_status = updateAction.advertise.advertise_status;
     advertiseToChange[0].advertise_message = updateAction.advertise.advertise_message;
-    advertiseToChange[0].advertise_city = updateAction.advertise.advertise_city;*/
+    advertiseToChange[0].advertise_city = updateAction.advertise.advertise_city;
     return newState;
 }
 reducerFunctions[ActionType.delete_advertise] = function (newState: IState, deleteAction: IAdvertiseAction) {
@@ -70,26 +70,41 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
         //if the component is in edit mode, it will render different than if it just shows the data
         if (this.state.edit_mode)
             return (
-                <tr>
-                    <td><input type="text" name="name" value={this.props.advertise.advertise_type} onChange={this.handleNameChange} /></td>
-                    <td><input type="number" name="value" value={this.props.advertise.advertise_description} onChange={this.handleValueChange} /> €</td>
-                    <td>
-                        <button onClick={this.handleSave} id={this.props.advertise._id}>save</button>
-                        <button onClick={this.handleRerenderTest} >increase State Counter</button>
-                    </td>
-                </tr>
+                <div>
+                <p>Type: <input type="text" name="type" value={this.props.advertise.advertise_type} onChange={this.handleNameChange} /></p>
+                <p>Description: <input type="text" name="description" value={this.props.advertise.advertise_description} onChange={this.handleNameChange} /></p>
+                <p>Category: <input type="text" name="category" value={this.props.advertise.advertise_category} onChange={this.handleNameChange} /></p>
+                <p>Price: <input type="text" name="price" value={this.props.advertise.advertise_price} onChange={this.handleNameChange} /></p>
+                <p>Picture: <input type="text" name="pictureUrl" value={this.props.advertise.advertise_pictureUrl} onChange={this.handleNameChange} /></p>
+                <p>Status: <input type="text" name="status" value={this.props.advertise.advertise_status} onChange={this.handleNameChange} /></p>
+                <p>City: <input type="text" name="city" value={this.props.advertise.advertise_city} onChange={this.handleNameChange} /></p>
+                <p>
+                <button onClick={this.handleSave} id={this.props.advertise._id}>save</button>
+                <button onClick={this.handleRerenderTest} >increase State Counter</button>
+                </p>
+                </div>
             )
         else
             return (
-                <tr>
-                    <td>{this.props.advertise.advertise_type}</td>
-                    <td>{this.props.advertise.advertise_description} €</td>
-                    <td>
+
+                <div>
+                    <p>Type: {this.props.advertise.advertise_type}</p>
+                    <p>Description: {this.props.advertise.advertise_description}</p>
+                    <p>Category: {this.props.advertise.advertise_category}</p>
+                    <p>Price: {this.props.advertise.advertise_price}</p>
+                    <p>Picture: {this.props.advertise.advertise_pictureUrl}</p>
+                    <p>Owner: {this.props.advertise.advertise_owner}</p>
+                    <p>Comment: {this.props.advertise.advertise_comment}</p>
+                    <p>Counter: {this.props.advertise.advertise_counter}</p>
+                    <p>Status: {this.props.advertise.advertise_status}</p>
+                    <p>Message: {this.props.advertise.advertise_message}</p>
+                    <p>City: {this.props.advertise.advertise_city}</p>
+                    <p>
                         <button onClick={this.handleSwitchToEditMode}>edit</button>
                         <button onClick={this.handleDelete} id={this.props.advertise._id}>sell or dispose</button>
                         <button onClick={this.handleRerenderTest} >increase State Counter {window.CS.getUIState().counter}</button>
-                    </td>
-                </tr>
+                    </p>
+                </div>
             )
     }
     handleSwitchToEditMode() {

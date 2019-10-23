@@ -62,8 +62,9 @@ export default class App extends React.PureComponent<IProps> {
           <Switch>
             <Route path="/showadvertises" component={ShowAllAdvertises} />
             <Route path="/register" component={Register} /> {/* mitte mitte */}
-            <Route path="/" component={Home} />
+    
           </Switch>
+         
           <div className="container-userdetails">
             <Route path="/login" component={Login} />
             <Userdetails />
