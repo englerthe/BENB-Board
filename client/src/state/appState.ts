@@ -22,7 +22,7 @@ export interface IUI {
 export interface IAdvertiseData {
     _id: string;
     advertise_type: string;
-    advertise_category: Array<any>;
+    advertise_category: [];
     advertise_description: string;
     advertise_price: string;
     advertise_pictureUrl: string;
@@ -62,19 +62,6 @@ export const initial:IState = {
             password:"",
             email: ""
         },
-        advertises:[{
-            _id: "string";
-            advertise_type: "string";
-            advertise_category: ["af"];
-            advertise_description: "string";
-            advertise_price: "string";
-            advertise_pictureUrl: "string";
-            advertise_owner?: "string";
-            advertise_comment?: "string";
-            advertise_counter: 0;
-            advertise_status: "string";
-            advertise_message?: "string";
-            advertise_city: "string";
-          }]
+        advertises:[]
 	}
 };

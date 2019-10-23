@@ -26,7 +26,7 @@ let Advertise = require('../models/Advertise');
    */   
 
 //Homepage
-advertiseRoutes.route('/showadvertises').get(function (req, res) {
+advertiseRoutes.route('/read').get(function (req, res) {
     console.log("got a request");
     Advertise.find(function (err, advertises) {
         if (err) {
@@ -49,7 +49,7 @@ advertiseRoutes.route('/add').post(function (req, res) {
             res.status(200).json({ 'advertise': 'advertise added successfully' });
         })
         .catch(err => {
-            res.status(400).send('adding new advertise failed', err);
+            res.status(400).send('adding new advertise failed');
         });
 });
 
