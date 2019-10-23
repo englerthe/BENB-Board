@@ -38,7 +38,7 @@ export default class App extends React.PureComponent<IProps> {
       type: ActionType.server_called
     }
     window.CS.clientAction(uiAction);
-    axios.get('/advertises/read').then(response => {
+    axios.get('/advertises/showadvertises').then(response => {
       console.log("this data was loaded as a result of componentDidMount:");
       console.log(response.data);
       const responseAction: IAdvertisesLoadedAction = {
@@ -59,10 +59,10 @@ export default class App extends React.PureComponent<IProps> {
           <Switch>
             <Route path="/showadvertises" component={ShowAllAdvertises} />
             <Route path="/register" component={Register} /> {/* mitte mitte */}
-            <Route path="/" component={Home} />
+    
           </Switch>
           <div>
-            <Route path="/login" component={Login} />
+            <Route path="/" component={Login} />
             <Userdetails />
           </div> {/* mitte rechts */}
         </div>

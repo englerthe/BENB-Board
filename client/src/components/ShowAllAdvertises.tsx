@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-
 import SingleAdvertise from './SingleAdvertise'
 import mongoose from 'mongoose';
 import { IAction, ActionType } from '../framework/IAction';
@@ -33,17 +32,13 @@ export default class ShowAllAdvertises extends Component<IProps, IJSXState> {
         return (
             <div>
           <p> {window.CS.getUIState().waitingForResponse.toString()}{window.CS.getUIState().counter}</p>
-          <h1>simple advertise management application</h1>
+          <h1>show all own advertises</h1>
           <p>to create a new advertise click this button:&nbsp;
             <button onClick={this.handleCreateAdvertise}>create advertise</button>
           </p>
-          <table>
-            <tbody>
-              <tr><th>description</th><th>value</th><th>action</th></tr>
-              {console.log(window.CS.getBMState().advertises)}
-              {window.CS.getBMState().advertises.map(advertise => <SingleAdvertise key={advertise._id} advertise={advertise} edit={false} />)}
-            </tbody>
-          </table>
+          <div>
+          {window.CS.getBMState().advertises.map(advertise => <SingleAdvertise key={advertise._id} advertise={advertise} edit={false} />)}
+          </div>
         </div>
         )
     }

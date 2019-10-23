@@ -7,7 +7,26 @@ let Advertise = require('../models/Advertise');
 //now we define the rest endpoints for the CRUD methods and implement the CRUD methods
 //R: read all advertises
 
-advertiseRoutes.route('/read').get(function (req, res) {
+/*advertiseRoutes.route('/read').get(function (req, res) {
+    console.log("got a request");
+    Advertise.find().populate ('owner') 
+    .then(responseFromDB => {
+        let myAdvertises = [];
+        responseFromDB.forEach(everyAdvertises => {
+            if(req.session.currentUser){
+              if(everyAdvertises.owner._id.equals(req.session.currentUser._id)){
+                myAdvertises.push(everyAdvertises);
+              }
+            }
+          })
+          res.render("", {advertises: myAdvertises});
+        })
+        .catch(error => console.log(error));
+      });
+   */   
+
+//Homepage
+advertiseRoutes.route('/showadvertises').get(function (req, res) {
     console.log("got a request");
     Advertise.find(function (err, advertises) {
         if (err) {
@@ -18,17 +37,19 @@ advertiseRoutes.route('/read').get(function (req, res) {
     });
 });
 
+
 //C: create a new advertise
 
 advertiseRoutes.route('/add').post(function (req, res) {
     console.log("Request to save this advertise:" + JSON.stringify(req.body));
     let advertise = new Advertise(req.body);
+    console.log(advertise)
     advertise.save()
         .then(advertise => {
             res.status(200).json({ 'advertise': 'advertise added successfully' });
         })
         .catch(err => {
-            res.status(400).send('adding new advertise failed');
+            res.status(400).send('adding new advertise failed', err);
         });
 });
 
@@ -48,8 +69,14 @@ advertiseRoutes.route('/update/:id').put(function (req, res) {
         if (!advertise) res.status(404).send("advertise to update not found, advertise _id:" + req.params.id);
         else {
             advertise.advertise_id = req.body.advertise_id;
-            advertise.advertise_name = req.body.advertise_name;
-            advertise.advertise_value = req.body.advertise_value;
+            advertise.advertise_type = req.body.advertise_type;
+            advertise.advertise_description = req.body.advertise_description;
+            advertise.advertise_category = req.body.advertise_category;
+            advertise.advertise_price = req.body.advertise_price;
+            advertise.advertise_pictureUrl = req.body.advertise_pictureUrl;
+            advertise.advertise_counter = req.body.advertise_counter;
+            advertise.advertise_status = req.body.advertise_status;
+            advertise.advertise_city = req.body.advertise_city;
 
             advertise.save().then(advertise => {
                 res.json('advertise updated!');

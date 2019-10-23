@@ -13,6 +13,7 @@ in the subdirectory "client":
 npm install
 
 # Prework before push
+git add .  (oder nur git add einzelne files)
 /client
   npm run build
   git add build --f
