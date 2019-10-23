@@ -11,8 +11,11 @@ import { IAction, ActionType } from './framework/IAction';
 import { IAdvertiseData, IState } from './state/appState'
 import axios from 'axios';
 import { reducerFunctions } from './reducer/appReducer';
+import './App.css';
 
 import { IWindow } from './framework/IWindow'
+
+const copyrightImg = require('./images/C.jpg')
 declare let window: IWindow;
 
 interface IProps {
@@ -55,18 +58,20 @@ export default class App extends React.PureComponent<IProps> {
       <div className="container-body">
         <NavBar /> {/* oben  */}
         <div className="container-main-content"> {/* mitte */}
-          <div><Categories /></div> {/* mitte links */}
+          <div className="container-categories"><Categories /></div> {/* mitte links */}
           <Switch>
             <Route path="/showadvertises" component={ShowAllAdvertises} />
             <Route path="/register" component={Register} /> {/* mitte mitte */}
             <Route path="/" component={Home} />
           </Switch>
-          <div>
+          <div className="container-userdetails">
             <Route path="/login" component={Login} />
             <Userdetails />
           </div> {/* mitte rechts */}
         </div>
-        <div className="footer">Footer</div> {/* unten */}
+        <div className="footer"> {/* unten */}
+          <img src={copyrightImg} alt="Copyright by BENB"/>Copyright by BENB
+          </div> 
       </div>
     );
   }

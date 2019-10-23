@@ -46,22 +46,3 @@ li a {
 li a.active {
   font-size: 1.3em;
 }
-
-.container-body {
-  display: flex;
-  flex-direction: column;
-  background-color: bisque;
-}
-
-.container-main-content {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.footer {
-  min-height: 50px;
-  background-color: lightgreen;
-  border: solid black 1px;
-  text-align: center;
-}
