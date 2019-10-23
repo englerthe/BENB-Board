@@ -10,7 +10,9 @@
     "index.html": "/index.html",
     "precache-manifest.dd28e30b3fe28b084b80d5a7d3d2a438.js": "/precache-manifest.dd28e30b3fe28b084b80d5a7d3d2a438.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/main.cd3ffe48.chunk.css.map": "/static/css/main.cd3ffe48.chunk.css.map"
+    "static/css/main.b473f410.chunk.css.map": "/static/css/main.b473f410.chunk.css.map",
+    "static/media/C.jpg": "/static/media/C.887f96e7.jpg",
+    "static/media/benb-logo.jpg": "/static/media/benb-logo.c771846f.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.87bec749.js",
