@@ -78,58 +78,69 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
         //if the component is in edit mode, it will render different than if it just shows the data
         if (this.state.edit_mode)
             return (
-                <div>
-                    <p>Title: <input type="text" name="title" value={this.props.advertise.advertise_title} onChange={this.handleTitleChange} /></p>
-                    <div>
-                        <label htmlFor="type">Choose a Type: </label>
-                        <input type="radio" name="type" value="offer" onClick={this.handleTypeChange} /> offer
-                        <input type="radio" name="type" value="search" onClick={this.handleTypeChange} /> search
-                    </div>
-                    <p>Description: <input type="text" name="description" value={this.props.advertise.advertise_description} onChange={this.handleDescriptionChange} /></p>
-                    Category: <select name="category" value={this.props.advertise.advertise_category} onChange={this.handleCategoryChange}>
-                        <option value="Handy">Handy</option>
-                        <option value="PC">PC</option>
-                        <option value="Vertrag">Vertrag</option>
-                        <option value="Sonstiges">Sonstiges</option>
-                    </select>
-                    <p>Price: <input type="text" name="price" value={this.props.advertise.advertise_price} onChange={this.handlePriceChange} /></p>
-                    <p>PictureUrl: <input type="text" name="pictureUrl" value={this.props.advertise.advertise_pictureUrl} onChange={this.handlePictureUrlChange} /></p>
-                    <div>
-                        <label htmlFor="type">Choose a Status: </label>
-                        <input type="radio" name="type" value="available" onClick={this.handleStatusChange} /> available
-                        <input type="radio" name="type" value="sold" onClick={this.handleStatusChange} /> sold
-                    </div>
-                    <p>City: <input type="text" name="city" value={this.props.advertise.advertise_city} onChange={this.handleCityChange} /></p>
-                    <p>
-                        <button onClick={this.handleSave} id={this.props.advertise._id}>save</button>
-                        {/*<button onClick={this.handleRerenderTest} >increase State Counter</button>*/}
-                    </p>
+                <div className="wholeProduct">
+                    <ul className="ulProduct">
+                        <li className="titleName">Title: <br></br> <input size={50} type="text" name="title" value={this.props.advertise.advertise_title} onChange={this.handleTitleChange} /></li>
+                        <li>PictureUrl: <br></br> <input size={50} type="text" name="pictureUrl" value={this.props.advertise.advertise_pictureUrl} onChange={this.handlePictureUrlChange} /></li>
+                        <li className="price">Price: <br></br> <input size={50} type="text" name="price" value={this.props.advertise.advertise_price} onChange={this.handlePriceChange} /></li>
+                        <li className="description">
+                            <label htmlFor="description">Description: <br></br> </label>
+                            <textarea rows={5} cols={52} maxLength={300} name="description" value={this.props.advertise.advertise_description} onChange={this.handleDescriptionChange} ></textarea>
+                        </li>
+                        {/*<li className="owner">Owner: <br></br> {this.props.advertise.advertise_owner}</li>*/}
+                        <li className="city">City: <br></br> <input size={50} type="text" name="city" value={this.props.advertise.advertise_city} onChange={this.handleCityChange} /></li>
+                        <li className="type">
+                            <label htmlFor="type">Choose a Type: <br></br> </label>
+                            <input type="radio" name="type" value="offer" checked={this.props.advertise.advertise_type === "offer"} onClick={this.handleTypeChange} /> <span className="offerOrange">offer</span>
+                            <input type="radio" name="type" value="search" checked={this.props.advertise.advertise_type === "search"} onClick={this.handleTypeChange} /> <span className="searchBlue">search</span>
+                        </li>
+                        <li className="status">
+                            <label htmlFor="status">Choose a Status: <br></br> </label>
+                            <input type="radio" name="status" value="available" checked={this.props.advertise.advertise_status === "available"} onClick={this.handleStatusChange} /> <span className="availableGreen">available</span>
+                            <input type="radio" name="status" value="sold" checked={this.props.advertise.advertise_status === "sold"} onClick={this.handleStatusChange} /> <span className="soldRed">sold</span>
+                        </li>
+                        {/*<li className="comment">Comment: <br></br> {this.props.advertise.advertise_comment}</li>*/}
+                        {/*<li className="message">Message: <br></br> {this.props.advertise.advertise_message}</li>*/}
+                        <li className="category">
+                        Category: <br></br> <select className="selectBox" name="category" value={this.props.advertise.advertise_category} onChange={this.handleCategoryChange}>
+                            <option value="---">---</option>
+                            <option value="Handy">Handy</option>
+                            <option value="PC">PC</option>
+                            <option value="Vertrag">Vertrag</option>
+                            <option value="Sonstiges">Sonstiges</option>
+                            </select>
+                        </li>
+                        {/*<li className="counter">Counter: <br></br> {this.props.advertise.advertise_counter}</li>*/}
+                        <li className="buttonsArea">
+                            <button onClick={this.handleSave} id={this.props.advertise._id}>save</button>
+                        </li>
+                    </ul>
                 </div>
             )
-        else if (window.CS.getUIState().loggedIn){
+        else if (window.CS.getUIState().loggedIn) {
             return (
 
                 <div className="wholeProduct">
                     <ul className="ulProduct">
-                        <li className="title">{this.props.advertise.advertise_title}</li>
-                        <li><img className="picture" src={this.props.advertise.advertise_pictureUrl} alt="Picture"/></li>
-                        <li className="type">Type: <br></br> {this.props.advertise.advertise_type}</li>
-                        <li className="description">Description: <br></br> {this.props.advertise.advertise_description}</li>
-                        <li className="category">Category: <br></br> {this.props.advertise.advertise_category}</li>
-                        <li className="price">Price: <br></br> {this.props.advertise.advertise_price}</li>
-                        <li className="owner">Owner: <br></br> {this.props.advertise.advertise_owner}</li>
-                        <li className="comment">Comment: <br></br> {this.props.advertise.advertise_comment}</li>
-                        <li className="counter">Counter: <br></br> {this.props.advertise.advertise_counter}</li>
-                        <li className="status">Status: <br></br> {this.props.advertise.advertise_status}</li>
-                        <li className="message">Message: <br></br> {this.props.advertise.advertise_message}</li>
-                        <li className="city">City: <br></br> {this.props.advertise.advertise_city}</li>
+                    <li className="title">{this.props.advertise.advertise_title}</li>
+                        <li><img className="picture" src={this.props.advertise.advertise_pictureUrl} alt="Picture" /></li>
+                        <li className="price"><span className="priceName">Price:</span> <br></br> {this.props.advertise.advertise_price}</li>
+                        <li className="description"><span className="descriptionName">Description:</span> <br></br> {this.props.advertise.advertise_description}</li>
+                        <li className="owner"><span className="ownerName">Owner:</span> <br></br> {this.props.advertise.advertise_owner}</li>
+                        <li className="city"><span className="cityName">City:</span> <br></br> {this.props.advertise.advertise_city}</li>
+                        <li className="type"><span className="typeName">Type:</span> <br></br> {this.props.advertise.advertise_type}</li>
+                        <li className="status"><span className="statusName">Status:</span> <br></br> {this.props.advertise.advertise_status} </li>
+                        <li className="comment"><span className="commentName">Comment:</span> <br></br> {this.props.advertise.advertise_comment}</li>
+                        <li className="message"><span className="messageName">Message:</span> <br></br> {this.props.advertise.advertise_message}</li>
+                        <li className="category"><span className="categoryName">Category:</span> <br></br> {this.props.advertise.advertise_category}</li>
+                        <li className="counter"><span className="counterName">Counter:</span> <br></br> {this.props.advertise.advertise_counter}</li>
                         <li className="buttonsArea">
-                        <button onClick={this.handleSwitchToEditMode}>edit</button>
-                        <button onClick={this.handleDelete} id={this.props.advertise._id}>sell or dispose</button>
-                        {/*<button onClick={this.handleRerenderTest} >increase State Counter {window.CS.getUIState().counter}</button>*/}
+                            <button onClick={this.handleSwitchToEditMode}>edit</button>
+                            <button onClick={this.handleDelete} id={this.props.advertise._id}>sell or dispose</button>
+                            {/*<button onClick={this.handleRerenderTest} >increase State Counter {window.CS.getUIState().counter}</button>*/}
                         </li>
                     </ul>
-                </div>
+                </div> // <span className="status" style={color: this.props.advertise.advertise_status === "sold" ? `${{color: "green"}}`:`${{color: "red"}}`} >{this.props.advertise.advertise_status}</span>
             )
         }
         else
@@ -138,17 +149,17 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
                 <div className="wholeProduct">
                     <ul className="ulProduct">
                         <li className="title">{this.props.advertise.advertise_title}</li>
-                        <li><img className="picture" src={this.props.advertise.advertise_pictureUrl} alt="Picture"/></li>
-                        <li className="type">Type: <br></br> {this.props.advertise.advertise_type}</li>
-                        <li className="description">Description: <br></br> {this.props.advertise.advertise_description}</li>
-                        <li className="category">Category: <br></br> {this.props.advertise.advertise_category}</li>
-                        <li className="price">Price: <br></br> {this.props.advertise.advertise_price}</li>
-                        <li className="owner">Owner: <br></br> {this.props.advertise.advertise_owner}</li>
-                        <li className="comment">Comment: <br></br> {this.props.advertise.advertise_comment}</li>
-                        <li className="counter">Counter: <br></br> {this.props.advertise.advertise_counter}</li>
-                        <li className="status">Status: <br></br> {this.props.advertise.advertise_status}</li>
-                        <li className="message">Message: <br></br> {this.props.advertise.advertise_message}</li>
-                        <li className="city">City: <br></br> {this.props.advertise.advertise_city}</li>
+                        <li><img className="picture" src={this.props.advertise.advertise_pictureUrl} alt="Picture" /></li>
+                        <li className="price"><span className="priceName">Price:</span> <br></br> {this.props.advertise.advertise_price}</li>
+                        <li className="description"><span className="descriptionName">Description:</span> <br></br> {this.props.advertise.advertise_description}</li>
+                        <li className="owner"><span className="ownerName">Owner:</span> <br></br> {this.props.advertise.advertise_owner}</li>
+                        <li className="city"><span className="cityName">City:</span> <br></br> {this.props.advertise.advertise_city}</li>
+                        <li className="type"><span className="typeName">Type:</span> <br></br> {this.props.advertise.advertise_type}</li>
+                        <li className="status"><span className="statusName">Status:</span> <br></br> {this.props.advertise.advertise_status}</li>
+                        <li className="comment"><span className="commentName">Comment:</span> <br></br> {this.props.advertise.advertise_comment}</li>
+                        <li className="message"><span className="messageName">Message:</span> <br></br> {this.props.advertise.advertise_message}</li>
+                        <li className="category"><span className="categoryName">Category:</span> <br></br> {this.props.advertise.advertise_category}</li>
+                        <li className="counter"><span className="counterName">Counter:</span> <br></br> {this.props.advertise.advertise_counter}</li>
                     </ul>
                 </div>
             )

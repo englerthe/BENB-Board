@@ -9,7 +9,9 @@
   flex-direction: column;
   background-color: rgb(200, 200, 200);
   border: solid 1px red;
-  font-family: 'Chango', cursive;
+  /*font-family: 'Chango', cursive;*/
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 1.1rem;
 }
 
 .container-main-content {
@@ -72,23 +74,159 @@ nav li {
 
 /* SingleAdvertise */
 .wholeProduct {
-  background-color: green;
+  background-color: rgb(151, 149, 149);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border: solid 1px yellow;
+  box-shadow: 5px 5px 5px rgb(48, 48, 48);
+  color: white;
   float: left;
   height: 1000px;
   width: 500px;
-  margin-right: 25px;
+  margin: 25px 10px 25px 10px;
   padding-left: 25px;
+  text-align: left;
+}
+
+.ulProduct {
+  list-style: none;
+}
+
+.title {
+  padding-bottom: 10px;
+  font-size: 1.4rem;
+  text-decoration: underline;
+  color: black;
+  font-weight: bold;
+}
+
+.titleName {
+  padding-bottom: 10px;
 }
 
 .picture {
   height: 250px;
   width: 250px;
+  padding: 10px 0 10px 0;
+  border: 1px solid black;
+  background-size: cover;
+  box-shadow: 5px 5px 5px rgb(48, 48, 48);
+  margin-bottom: 15px;
 }
 
-.ulProduct {
-  list-style: none;
+.type {
+  padding-bottom: 10px;
+}
+
+.typeName {
+  color: black;
+  font-weight: bold;
+}
+
+.offerOrange {
+  color: orange;
+}
+
+.searchBlue {
+  color: blue;
+}
+
+.description {
+  padding-bottom: 10px;
+}
+
+.descriptionName {
+  color: black;
+  font-weight: bold;
+}
+
+.category {
+  padding-bottom: 10px;
+}
+
+.categoryName {
+  color: black;
+  font-weight: bold;
+}
+
+.selectBox {
+  width: 385px;
+}
+
+.price {
+  padding-bottom: 10px;
+}
+
+.priceName {
+  color: black;
+  font-weight: bold;
+}
+
+.owner {
+  padding-bottom: 10px;
+}
+
+.ownerName {
+  color: black;
+  font-weight: bold;
+}
+
+.comment {
+  padding-bottom: 10px;
+}
+
+.commentName {
+  color: black;
+  font-weight: bold;
+}
+
+.counter {
+  padding-bottom: 10px;
+}
+
+.counterName {
+  color: black;
+  font-weight: bold;
+}
+
+.status {
+  padding-bottom: 10px;
+}
+
+.statusName {
+  color: black;
+  font-weight: bold;
+}
+
+.availableGreen {
+  color: greenyellow;
+}
+
+.soldRed {
+  color: red;
+}
+
+.message {
+  padding-bottom: 10px;
+}
+
+.messageName {
+  color: black;
+  font-weight: bold;
+}
+
+.city {
+  padding-bottom: 10px;
+}
+
+.cityName {
+  color: black;
+  font-weight: bold;
+}
+
+/* SingleAdvertise */
+.textFromWholeProduct {
+  color: black;
+  margin: 25px 10px 25px 0px;
+  padding-left: 25px;
 }

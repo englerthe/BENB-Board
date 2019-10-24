@@ -34,8 +34,8 @@ export default class ShowAllAdvertises extends Component<IProps, IJSXState> {
           return (
             <div>
             {/*{window.CS.getUIState().waitingForResponse.toString()}{window.CS.getUIState().counter}*/}
-            <h1>show all own advertises</h1>
-            <p>to create a new advertise click this button:&nbsp;
+            <h1 className="textFromWholeProduct">show all own advertises</h1>
+            <p className="textFromWholeProduct">to create a new advertise click this button:&nbsp;
               <button onClick={this.handleCreateAdvertise}>create advertise</button>
             </p>
             <div>
