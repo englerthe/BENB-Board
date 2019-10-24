@@ -8,8 +8,18 @@ import history from '../framework/history';
 
 declare let window: IWindow;
 
+export interface IErrorMessage extends IAction {
+    errorMessage: string;
+}
+
 export interface IUserAction extends IAction {
     user: IUser
+}
+
+reducerFunctions[ActionType.register_error] = function (newState: IState, action: IErrorMessage) {
+    newState.UI.waitingForResponse = false;
+    newState.UI.Register.errorMessage = action.errorMessage;
+    return newState
 }
 
 reducerFunctions[ActionType.update_user] = function (newState: IState, updateAction: IUserAction) {
@@ -20,7 +30,7 @@ reducerFunctions[ActionType.update_user] = function (newState: IState, updateAct
 reducerFunctions[ActionType.user_created] = function (newState: IState, updateAction: IUserAction) {
     console.log(updateAction.user);
     newState.UI.waitingForResponse = false;
-    newState.UI.loggedIn = true ;
+    newState.UI.loggedIn = true;
     return newState
 }
 export default class Register extends Component {
@@ -40,8 +50,12 @@ export default class Register extends Component {
                     <label htmlFor="password">Password:</label>
                     <input type="password" placeholder="********" onChange={this.handlePasswordChange} value={window.CS.getBMState().user.password} />
                     <br />
+                    <label htmlFor="email">Email:</label>
+                    <input type="email" placeholder="yourname@mail.com" onChange={this.handleEmailChange} value={window.CS.getBMState().user.email} />
+                    <br />
                     <input type="submit" value="Register as new User" />
                 </form>
+                <p>{window.CS.getUIState().Register.errorMessage}</p>
             </div>
         )
     }
@@ -82,6 +96,15 @@ export default class Register extends Component {
         }
         window.CS.clientAction(action);
     }
+    handleEmailChange(event: any) {
+        let user = window.CS.getBMState().user;
+        user.email = event.target.value
+        const action: IUserAction = {
+            type: ActionType.update_user,
+            user: user
+        }
+        window.CS.clientAction(action);
+    }
     handleSubmit(event: any) {
         event.preventDefault();
         const uiAction: IAction = {
@@ -90,13 +113,21 @@ export default class Register extends Component {
         window.CS.clientAction(uiAction);
         axios.post('/auth/signup', window.CS.getBMState().user)
             .then(res => {
-                const uiAction: IAction = {
-                    type: ActionType.user_created
+                const data = res.data;
+                console.log(data);
+                if (data.errorMessage) {
+                    const uiAction: IErrorMessage = {
+                        type: ActionType.register_error,
+                        errorMessage: data.errorMessage
+                    }
+                    window.CS.clientAction(uiAction);
+                } else {
+                    const uiAction: IAction = {
+                        type: ActionType.user_created
+                    }
+                    history.push('/');
+                    window.CS.clientAction(uiAction);
                 }
-                history.push('/');
-                window.CS.clientAction(uiAction);
-
-                console.log(res.data)
             });
     }
 }

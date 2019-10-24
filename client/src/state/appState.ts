@@ -10,13 +10,16 @@ export interface IUser {
 export interface ILogin{
     errorMessage:string;
 }
-
+export interface IRegister{
+    errorMessage:string;
+}
 
 export interface IUI {
     counter: number;
     loggedIn: boolean;
     waitingForResponse: boolean;
     Login: ILogin;
+    Register: IRegister;
 }
 
 export interface IAdvertiseData {
@@ -53,7 +56,8 @@ export const initial:IState = {
 		counter: 0,
 		loggedIn: false,
         waitingForResponse: false,
-        Login: {errorMessage:""}
+        Login: {errorMessage:""},
+        Register: {errorMessage:""}
     },
 	BM: {
         user:{
