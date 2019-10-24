@@ -69,6 +69,7 @@ advertiseRoutes.route('/update/:id').put(function (req, res) {
         if (!advertise) res.status(404).send("advertise to update not found, advertise _id:" + req.params.id);
         else {
             advertise.advertise_id = req.body.advertise_id;
+            advertise.advertise_title = req.body.advertise_title;
             advertise.advertise_type = req.body.advertise_type;
             advertise.advertise_description = req.body.advertise_description;
             advertise.advertise_category = req.body.advertise_category;
