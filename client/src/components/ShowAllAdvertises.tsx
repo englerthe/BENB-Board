@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import SingleAdvertise from './SingleAdvertise'
 import mongoose from 'mongoose';
 import { IAction, ActionType } from '../framework/IAction';
-import {IAdvertiseData,IState} from '../state/appState'
+import { IAdvertiseData, IState } from '../state/appState'
 import axios from 'axios';
 import { reducerFunctions } from '../reducer/appReducer';
 import '../App.css';
@@ -10,15 +10,15 @@ import '../App.css';
 import { IWindow } from '../framework/IWindow'
 declare let window: IWindow;
 
-interface IProps{};
+interface IProps { };
 interface IJSXState { };
 export interface IAdvertiseAction extends IAction {
   advertise: IAdvertiseData
 }
 reducerFunctions[ActionType.create_advertise] = function (newState: IState, action: IAdvertiseAction) {
-  console.log("test",newState.BM.advertises);
+  console.log("test", newState.BM.advertises);
   newState.BM.advertises.push(action.advertise);
-  newState.UI.waitingForResponse=false;
+  newState.UI.waitingForResponse = false;
   return newState;
 }
 
@@ -50,10 +50,10 @@ export default class ShowAllAdvertises extends Component<IProps, IJSXState> {
           {/*{window.CS.getUIState().waitingForResponse.toString()}{window.CS.getUIState().counter}*/}
           <div>
           {window.CS.getBMState().advertises.map(advertise => <SingleAdvertise key={advertise._id} advertise={advertise} edit={false} />)}
-          </div>
         </div>
-        )
-    }
+      </div>
+    )
+  }
     handleCreateAdvertise() {
         console.log("handleCreateAdvertise invoked");
         const uiAction: IAction = {

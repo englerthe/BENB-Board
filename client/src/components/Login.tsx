@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { ActionType, IAction } from '../framework/IAction';
-import { IState, IUser } from '../state/appState'
+import { IState, IUser } from '../state/appState';
 import axios from 'axios';
 import { IWindow } from '../framework/IWindow';
 import { reducerFunctions } from '../reducer/appReducer';
