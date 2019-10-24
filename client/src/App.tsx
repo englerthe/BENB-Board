@@ -51,29 +51,52 @@ export default class App extends React.PureComponent<IProps> {
       window.CS.clientAction(responseAction);
     }).catch(function (error) { console.log(error); })
   }
-
   render() {
     window.CS.log("App --> render()")
+    if (window.CS.getUIState().loggedIn) {
     return (
       <div className="container-body">
         <NavBar /> {/* oben  */}
         <div className="container-main-content"> {/* mitte */}
-          <div className="container-categories"><Categories /></div> {/* mitte links */}
+          <div className="container-categories">
+            <Categories />
+          </div> {/* mitte links */}
           <Switch>
             <Route path="/showadvertises" component={ShowAllAdvertises} />
             <Route path="/register" component={Register} /> {/* mitte mitte */}
+            <Route exact={true} path="/" component={ShowAllAdvertises} />
           </Switch>
           <div className="container-userdetails">
-            <Route path="/" component={Login} />
-            {/*<Route path="/login" component={Login} />*/}
-            <Userdetails />
+          <Login />
           </div> {/* mitte rechts */}
         </div>
         <div className="footer"> {/* unten */}
-          <img src={copyrightImg} alt="Copyright by BENB"/>Copyright by BENB
-          </div> 
+          <img src={copyrightImg} alt="Copyright by BENB" />Copyright by BENB
+          </div>
       </div>
-    );
+    )} else {
+      return (
+        <div className="container-body">
+          <NavBar /> {/* oben  */}
+          <div className="container-main-content"> {/* mitte */}
+            <div className="container-categories">
+              <Categories />
+            </div> {/* mitte links */}
+            <Switch>
+              <Route path="/showadvertises" component={ShowAllAdvertises} />
+              <Route path="/register" component={Register} /> {/* mitte mitte */}
+              <Route exact={true} path="/" component={ShowAllAdvertises} />
+            </Switch>
+            <div className="container-userdetails">
+            <Route path="/login" component={Login} />
+            </div> {/* mitte rechts */}
+          </div>
+          <div className="footer"> {/* unten */}
+            <img src={copyrightImg} alt="Copyright by BENB" />Copyright by BENB
+            </div>
+        </div>
+      )}
+    ;
   }
 
 }
