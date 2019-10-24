@@ -70,4 +70,25 @@ nav li {
   text-align: center;
 }
 
+/* SingleAdvertise */
+.wholeProduct {
+  background-color: green;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: solid 1px yellow;
+  float: left;
+  height: 1000px;
+  width: 500px;
+  margin-right: 25px;
+  padding-left: 25px;
+}
 
+.picture {
+  height: 250px;
+  width: 250px;
+}
+
+.ulProduct {
+  list-style: none;
+}
