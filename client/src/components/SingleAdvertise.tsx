@@ -3,6 +3,7 @@ import { IAdvertiseAction } from './ShowAllAdvertises';
 import { ActionType, IAction } from '../framework/IAction';
 import { IAdvertiseData, IState } from '../state/appState'
 import axios from 'axios';
+import '../App.css';
 
 import { IWindow } from '../framework/IWindow';
 import { reducerFunctions } from '../reducer/appReducer';
@@ -64,7 +65,7 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
         this.handleStatusChange = this.handleStatusChange.bind(this);
         this.handleCityChange = this.handleCityChange.bind(this);
         this.handleSave = this.handleSave.bind(this);
-        this.handleRerenderTest = this.handleRerenderTest.bind(this);
+        //this.handleRerenderTest = this.handleRerenderTest.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
 
         this.state = {
@@ -101,31 +102,54 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
                     <p>City: <input type="text" name="city" value={this.props.advertise.advertise_city} onChange={this.handleCityChange} /></p>
                     <p>
                         <button onClick={this.handleSave} id={this.props.advertise._id}>save</button>
-                        <button onClick={this.handleRerenderTest} >increase State Counter</button>
+                        {/*<button onClick={this.handleRerenderTest} >increase State Counter</button>*/}
                     </p>
                 </div>
             )
+        else if (window.CS.getUIState().loggedIn){
+            return (
+
+                <div className="wholeProduct">
+                    <ul className="ulProduct">
+                        <li className="title">{this.props.advertise.advertise_title}</li>
+                        <li><img className="picture" src={this.props.advertise.advertise_pictureUrl} alt="Picture"/></li>
+                        <li className="type">Type: <br></br> {this.props.advertise.advertise_type}</li>
+                        <li className="description">Description: <br></br> {this.props.advertise.advertise_description}</li>
+                        <li className="category">Category: <br></br> {this.props.advertise.advertise_category}</li>
+                        <li className="price">Price: <br></br> {this.props.advertise.advertise_price}</li>
+                        <li className="owner">Owner: <br></br> {this.props.advertise.advertise_owner}</li>
+                        <li className="comment">Comment: <br></br> {this.props.advertise.advertise_comment}</li>
+                        <li className="counter">Counter: <br></br> {this.props.advertise.advertise_counter}</li>
+                        <li className="status">Status: <br></br> {this.props.advertise.advertise_status}</li>
+                        <li className="message">Message: <br></br> {this.props.advertise.advertise_message}</li>
+                        <li className="city">City: <br></br> {this.props.advertise.advertise_city}</li>
+                        <li className="buttonsArea">
+                        <button onClick={this.handleSwitchToEditMode}>edit</button>
+                        <button onClick={this.handleDelete} id={this.props.advertise._id}>sell or dispose</button>
+                        {/*<button onClick={this.handleRerenderTest} >increase State Counter {window.CS.getUIState().counter}</button>*/}
+                        </li>
+                    </ul>
+                </div>
+            )
+        }
         else
             return (
 
-                <div>
-                    <h3>Title: {this.props.advertise.advertise_title}</h3>
-                    <p><img src={this.props.advertise.advertise_pictureUrl} alt="Picture"/></p>
-                    <p>Type: {this.props.advertise.advertise_type}</p>
-                    <p>Description: {this.props.advertise.advertise_description}</p>
-                    <p>Category: {this.props.advertise.advertise_category}</p>
-                    <p>Price: {this.props.advertise.advertise_price}</p>
-                    <p>Owner: {this.props.advertise.advertise_owner}</p>
-                    <p>Comment: {this.props.advertise.advertise_comment}</p>
-                    <p>Counter: {this.props.advertise.advertise_counter}</p>
-                    <p>Status: {this.props.advertise.advertise_status}</p>
-                    <p>Message: {this.props.advertise.advertise_message}</p>
-                    <p>City: {this.props.advertise.advertise_city}</p>
-                    <p>
-                        <button onClick={this.handleSwitchToEditMode}>edit</button>
-                        <button onClick={this.handleDelete} id={this.props.advertise._id}>sell or dispose</button>
-                        <button onClick={this.handleRerenderTest} >increase State Counter {window.CS.getUIState().counter}</button>
-                    </p>
+                <div className="wholeProduct">
+                    <ul className="ulProduct">
+                        <li className="title">{this.props.advertise.advertise_title}</li>
+                        <li><img className="picture" src={this.props.advertise.advertise_pictureUrl} alt="Picture"/></li>
+                        <li className="type">Type: <br></br> {this.props.advertise.advertise_type}</li>
+                        <li className="description">Description: <br></br> {this.props.advertise.advertise_description}</li>
+                        <li className="category">Category: <br></br> {this.props.advertise.advertise_category}</li>
+                        <li className="price">Price: <br></br> {this.props.advertise.advertise_price}</li>
+                        <li className="owner">Owner: <br></br> {this.props.advertise.advertise_owner}</li>
+                        <li className="comment">Comment: <br></br> {this.props.advertise.advertise_comment}</li>
+                        <li className="counter">Counter: <br></br> {this.props.advertise.advertise_counter}</li>
+                        <li className="status">Status: <br></br> {this.props.advertise.advertise_status}</li>
+                        <li className="message">Message: <br></br> {this.props.advertise.advertise_message}</li>
+                        <li className="city">City: <br></br> {this.props.advertise.advertise_city}</li>
+                    </ul>
                 </div>
             )
     }
@@ -240,10 +264,12 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
                 window.CS.clientAction(action)
             });
     }
+    /*
     handleRerenderTest(event: any) {
         const action: IAction = {
             type: ActionType.render_test,
         }
         window.CS.clientAction(action);
     }
+    */
 }

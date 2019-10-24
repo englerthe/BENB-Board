@@ -5,6 +5,7 @@ import { IAction, ActionType } from '../framework/IAction';
 import {IAdvertiseData,IState} from '../state/appState'
 import axios from 'axios';
 import { reducerFunctions } from '../reducer/appReducer';
+import '../App.css';
 
 import { IWindow } from '../framework/IWindow'
 declare let window: IWindow;
@@ -29,13 +30,24 @@ export default class ShowAllAdvertises extends Component<IProps, IJSXState> {
         this.handleCreateAdvertise = this.handleCreateAdvertise.bind(this);
       }
     render() {
-        return (
+        if (window.CS.getUIState().loggedIn){
+          return (
             <div>
-          <p> {window.CS.getUIState().waitingForResponse.toString()}{window.CS.getUIState().counter}</p>
-          <h1>show all own advertises</h1>
-          <p>to create a new advertise click this button:&nbsp;
-            <button onClick={this.handleCreateAdvertise}>create advertise</button>
-          </p>
+            {/*{window.CS.getUIState().waitingForResponse.toString()}{window.CS.getUIState().counter}*/}
+            <h1>show all own advertises</h1>
+            <p>to create a new advertise click this button:&nbsp;
+              <button onClick={this.handleCreateAdvertise}>create advertise</button>
+            </p>
+            <div>
+            {window.CS.getBMState().advertises.map(advertise => <SingleAdvertise key={advertise._id} advertise={advertise} edit={false} />)}
+            </div>
+          </div>
+          )
+        }
+        else 
+        return (
+          <div>
+          {/*{window.CS.getUIState().waitingForResponse.toString()}{window.CS.getUIState().counter}*/}
           <div>
           {window.CS.getBMState().advertises.map(advertise => <SingleAdvertise key={advertise._id} advertise={advertise} edit={false} />)}
           </div>
