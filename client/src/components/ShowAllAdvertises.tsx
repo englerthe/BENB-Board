@@ -36,11 +36,11 @@ export default class ShowAllAdvertises extends Component<IProps, IJSXState> {
       let locationProp = this.props as any;
       const renderAdds = locationProp.location.pathname === "/showadvertises" 
       ?
-      window.CS.getBMState().advertises.filter((item: any) => item.owner === window.CS.getBMState().user.username)
+      window.CS.getBMState().advertises.filter((item: any) => item.advertise_owner === window.CS.getBMState().user.username)
       :
       window.CS.getBMState().advertises
-      console.log(window.CS.getBMState().user.username);
-      console.log(window.CS.getBMState().user.username.toString());
+      console.log(renderAdds);
+      console.log(window.CS.getBMState().user);
         if (window.CS.getUIState().loggedIn){
           
         return (
