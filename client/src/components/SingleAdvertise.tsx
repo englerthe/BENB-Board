@@ -51,32 +51,127 @@ reducerFunctions[ActionType.delete_advertise] = function (newState: IState, dele
 
 
 export default class SingleAdvertise extends React.PureComponent<IProps, IJSXState> {
-
     constructor(props: IProps) {
         super(props);
-
-        this.handleSwitchToEditMode = this.handleSwitchToEditMode.bind(this);
-        this.handleTitleChange = this.handleTitleChange.bind(this);
-        this.handleTypeChange = this.handleTypeChange.bind(this);
-        this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
-        this.handleCategoryChange = this.handleCategoryChange.bind(this);
-        this.handlePriceChange = this.handlePriceChange.bind(this);
-        this.handlePictureUrlChange = this.handlePictureUrlChange.bind(this);
-        this.handleStatusChange = this.handleStatusChange.bind(this);
-        this.handleCityChange = this.handleCityChange.bind(this);
-        this.handleSave = this.handleSave.bind(this);
-        //this.handleRerenderTest = this.handleRerenderTest.bind(this);
-        this.handleDelete = this.handleDelete.bind(this);
-
         this.state = {
             edit_mode: props.edit,
         }
     }
+    handleSwitchToEditMode = () => {
+        this.setState({ edit_mode: true });
+    }
+    handleTitleChange(event: any) {
+        const newAdvertise = this.props.advertise;
+        newAdvertise.advertise_title = event.target.value
+        const action: IAdvertiseAction = {
+            type: ActionType.update_advertise,
+            advertise: newAdvertise
+        }
+        window.CS.clientAction(action);
+    }
 
+    handleTypeChange = (event: any) => {
+        const newAdvertise = this.props.advertise;
+        newAdvertise.advertise_type = event.target.value;
+        const action: IAdvertiseAction = {
+            type: ActionType.update_advertise,
+            advertise: newAdvertise
+        }
+        window.CS.clientAction(action);
+    }
+
+    handleDescriptionChange = (event: any) => {
+        const newAdvertise = this.props.advertise;
+        newAdvertise.advertise_description = event.target.value;
+        const action: IAdvertiseAction = {
+            type: ActionType.update_advertise,
+            advertise: newAdvertise
+        }
+        window.CS.clientAction(action);
+    }
+
+    handleCategoryChange = (event: any) => {
+        const newAdvertise = this.props.advertise;
+        newAdvertise.advertise_category = event.target.value;
+        const action: IAdvertiseAction = {
+            type: ActionType.update_advertise,
+            advertise: newAdvertise
+        }
+        window.CS.clientAction(action);
+    }
+
+    handlePriceChange = (event: any) => {
+        const newAdvertise = this.props.advertise;
+        newAdvertise.advertise_price = event.target.value;
+        const action: IAdvertiseAction = {
+            type: ActionType.update_advertise,
+            advertise: newAdvertise
+        }
+        window.CS.clientAction(action);
+    }
+
+    handlePictureUrlChange = (event: any) => {
+        const newAdvertise = this.props.advertise;
+        newAdvertise.advertise_pictureUrl = event.target.value;
+        const action: IAdvertiseAction = {
+            type: ActionType.update_advertise,
+            advertise: newAdvertise
+        }
+        window.CS.clientAction(action);
+    }
+
+    handleStatusChange = (event: any) => {
+        const newAdvertise = this.props.advertise;
+        newAdvertise.advertise_status = event.target.value;
+        const action: IAdvertiseAction = {
+            type: ActionType.update_advertise,
+            advertise: newAdvertise
+        }
+        window.CS.clientAction(action);
+    }
+
+    handleCityChange = (event: any) => {
+        const newAdvertise = this.props.advertise;
+        newAdvertise.advertise_city = event.target.value;
+        const action: IAdvertiseAction = {
+            type: ActionType.update_advertise,
+            advertise: newAdvertise
+        }
+        window.CS.clientAction(action);
+    }
+
+    handleSave = (event: any) => {
+        this.setState({ edit_mode: false });
+        const uiAction: IAction = {
+            type: ActionType.server_called
+        }
+        window.CS.clientAction(uiAction);
+        axios.put('/advertises/update/' + this.props.advertise._id, this.props.advertise)
+            .then(res => {
+                const uiAction: IAction = {
+                    type: ActionType.advertise_updated
+                }
+                window.CS.clientAction(uiAction);
+            });
+    }
+    handleDelete = () => {
+        const uiAction: IAction = {
+            type: ActionType.server_called
+        }
+        window.CS.clientAction(uiAction);
+        axios.post('/advertises/delete/' + this.props.advertise._id)
+            .then(res => {
+                const action: IAdvertiseAction = {
+                    type: ActionType.delete_advertise,
+                    advertise: this.props.advertise
+                }
+                window.CS.clientAction(action)
+            });
+    }
     render() {
-
+        let locationProp = this.props as any;
         //if the component is in edit mode, it will render different than if it just shows the data
-        if (this.state.edit_mode)
+        if (this.state.edit_mode && locationProp.location.pathname === "/showadvertises")
             return (
                 <div className="wholeProduct">
                     <ul className="ulProduct">
@@ -97,7 +192,7 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
                         <li className="status">
                             <label htmlFor="status">Choose a Status: <br></br> </label>
                             <input type="radio" name="status" value="available" checked={this.props.advertise.advertise_status === "available"} onClick={this.handleStatusChange} /> <span className="availableGreen">available</span>
-                            <input type="radio" name="status" value="sold" checked={this.props.advertise.advertise_status === "sold"} onClick={this.handleStatusChange} /> <span className="soldRed">sold</span>
+                            <input type="radio" name="status" value="sold" checked={this.props.advertise.advertise_status === "sold"} onClick={this.handleStatusChange} /> <span>sold</span>
                         </li>
                         {/*<li className="comment">Comment: <br></br> {this.props.advertise.advertise_comment}</li>*/}
                         {/*<li className="message">Message: <br></br> {this.props.advertise.advertise_message}</li>*/}
@@ -117,7 +212,7 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
                     </ul>
                 </div>
             )
-        else if (window.CS.getUIState().loggedIn) {
+        else if (window.CS.getUIState().loggedIn && locationProp.location.pathname === "/showadvertises") {
             return (
 
                 <div className="wholeProduct">
@@ -140,7 +235,7 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
                             {/*<button onClick={this.handleRerenderTest} >increase State Counter {window.CS.getUIState().counter}</button>*/}
                         </li>
                     </ul>
-                </div> // <span className="status" style={color: this.props.advertise.advertise_status === "sold" ? `${{color: "green"}}`:`${{color: "red"}}`} >{this.props.advertise.advertise_status}</span>
+                </div>
             )
         }
         else
@@ -164,123 +259,4 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
                 </div>
             )
     }
-    handleSwitchToEditMode() {
-        this.setState({ edit_mode: true });
-    }
-    handleTitleChange(event: any) {
-        const newAdvertise = this.props.advertise;
-        newAdvertise.advertise_title = event.target.value
-        const action: IAdvertiseAction = {
-            type: ActionType.update_advertise,
-            advertise: newAdvertise
-        }
-        window.CS.clientAction(action);
-    }
-
-    handleTypeChange(event: any) {
-        const newAdvertise = this.props.advertise;
-        newAdvertise.advertise_type = event.target.value;
-        const action: IAdvertiseAction = {
-            type: ActionType.update_advertise,
-            advertise: newAdvertise
-        }
-        window.CS.clientAction(action);
-    }
-
-    handleDescriptionChange(event: any) {
-        const newAdvertise = this.props.advertise;
-        newAdvertise.advertise_description = event.target.value;
-        const action: IAdvertiseAction = {
-            type: ActionType.update_advertise,
-            advertise: newAdvertise
-        }
-        window.CS.clientAction(action);
-    }
-
-    handleCategoryChange(event: any) {
-        const newAdvertise = this.props.advertise;
-        newAdvertise.advertise_category = event.target.value;
-        const action: IAdvertiseAction = {
-            type: ActionType.update_advertise,
-            advertise: newAdvertise
-        }
-        window.CS.clientAction(action);
-    }
-
-    handlePriceChange(event: any) {
-        const newAdvertise = this.props.advertise;
-        newAdvertise.advertise_price = event.target.value;
-        const action: IAdvertiseAction = {
-            type: ActionType.update_advertise,
-            advertise: newAdvertise
-        }
-        window.CS.clientAction(action);
-    }
-
-    handlePictureUrlChange(event: any) {
-        const newAdvertise = this.props.advertise;
-        newAdvertise.advertise_pictureUrl = event.target.value;
-        const action: IAdvertiseAction = {
-            type: ActionType.update_advertise,
-            advertise: newAdvertise
-        }
-        window.CS.clientAction(action);
-    }
-
-    handleStatusChange(event: any) {
-        const newAdvertise = this.props.advertise;
-        newAdvertise.advertise_status = event.target.value;
-        const action: IAdvertiseAction = {
-            type: ActionType.update_advertise,
-            advertise: newAdvertise
-        }
-        window.CS.clientAction(action);
-    }
-
-    handleCityChange(event: any) {
-        const newAdvertise = this.props.advertise;
-        newAdvertise.advertise_city = event.target.value;
-        const action: IAdvertiseAction = {
-            type: ActionType.update_advertise,
-            advertise: newAdvertise
-        }
-        window.CS.clientAction(action);
-    }
-
-    handleSave(event: any) {
-        this.setState({ edit_mode: false });
-        const uiAction: IAction = {
-            type: ActionType.server_called
-        }
-        window.CS.clientAction(uiAction);
-        axios.put('/advertises/update/' + this.props.advertise._id, this.props.advertise)
-            .then(res => {
-                const uiAction: IAction = {
-                    type: ActionType.advertise_updated
-                }
-                window.CS.clientAction(uiAction);
-            });
-    }
-    handleDelete() {
-        const uiAction: IAction = {
-            type: ActionType.server_called
-        }
-        window.CS.clientAction(uiAction);
-        axios.post('/advertises/delete/' + this.props.advertise._id)
-            .then(res => {
-                const action: IAdvertiseAction = {
-                    type: ActionType.delete_advertise,
-                    advertise: this.props.advertise
-                }
-                window.CS.clientAction(action)
-            });
-    }
-    /*
-    handleRerenderTest(event: any) {
-        const action: IAction = {
-            type: ActionType.render_test,
-        }
-        window.CS.clientAction(action);
-    }
-    */
 }

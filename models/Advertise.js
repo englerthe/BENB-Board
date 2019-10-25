@@ -10,11 +10,11 @@ const advertiseSchema = new Schema({
     advertise_description: String,
     advertise_price: String,
     advertise_pictureUrl: String,
-    advertise_owner: {type: Schema.Types.ObjectId, ref: 'User'},
-    advertise_comment: [{type: Schema.Types.ObjectId, ref: 'Comment'}],
+    advertise_owner: String,//{type: Schema.Types.ObjectId, ref: 'User'},
+    advertise_comment: {type: Schema.Types.ObjectId, ref: 'Comment'},
     advertise_counter: Number,
     advertise_status: {type: String, enum: ["available", "sold"]},
-    advertise_message: [{type: Schema.Types.ObjectId, ref: 'Message'}],
+    advertise_message: {type: Schema.Types.ObjectId, ref: 'Message'},
     advertise_city: String
 }, {
     timestamps: {

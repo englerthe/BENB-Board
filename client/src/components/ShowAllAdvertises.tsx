@@ -8,9 +8,12 @@ import { reducerFunctions } from '../reducer/appReducer';
 import '../App.css';
 
 import { IWindow } from '../framework/IWindow'
+import { userInfo } from 'os';
 declare let window: IWindow;
 
-interface IProps { };
+interface IProps {
+  user?: boolean
+};
 interface IJSXState { };
 export interface IAdvertiseAction extends IAction {
   advertise: IAdvertiseData
@@ -30,26 +33,40 @@ export default class ShowAllAdvertises extends Component<IProps, IJSXState> {
         this.handleCreateAdvertise = this.handleCreateAdvertise.bind(this);
       }
     render() {
+      let locationProp = this.props as any;
+      const renderAdds = locationProp.location.pathname === "/showadvertises" 
+      ?
+      window.CS.getBMState().advertises.filter((item: any) => item.owner === window.CS.getBMState().user.username)
+      :
+      window.CS.getBMState().advertises
+      console.log(window.CS.getBMState().user.username);
+      console.log(window.CS.getBMState().user.username.toString());
         if (window.CS.getUIState().loggedIn){
-          return (
-            <div>
-            {/*{window.CS.getUIState().waitingForResponse.toString()}{window.CS.getUIState().counter}*/}
+          
+        return (
+          <div>
+          {/*{window.CS.getUIState().waitingForResponse.toString()}{window.CS.getUIState().counter}*/}
+          {
+          locationProp.location.pathname === "/showadvertises" &&
+          <>
             <h1 className="textFromWholeProduct">show all own advertises</h1>
             <p className="textFromWholeProduct">to create a new advertise click this button:&nbsp;
               <button onClick={this.handleCreateAdvertise}>create advertise</button>
             </p>
-            <div>
-            {window.CS.getBMState().advertises.map(advertise => <SingleAdvertise key={advertise._id} advertise={advertise} edit={false} />)}
-            </div>
+          </>
+          }
+          <div>
+          {renderAdds.map(advertise => <SingleAdvertise key={advertise._id} {...this.props} advertise={advertise} edit={false} />)}
           </div>
-          )
-        }
+        </div>
+        )
+      }
         else 
         return (
           <div>
           {/*{window.CS.getUIState().waitingForResponse.toString()}{window.CS.getUIState().counter}*/}
           <div>
-          {window.CS.getBMState().advertises.map(advertise => <SingleAdvertise key={advertise._id} advertise={advertise} edit={false} />)}
+          {window.CS.getBMState().advertises.map(advertise => <SingleAdvertise key={advertise._id} {...this.props} advertise={advertise} edit={false} />)}
         </div>
       </div>
     )
@@ -67,6 +84,7 @@ export default class ShowAllAdvertises extends Component<IProps, IJSXState> {
           advertise_description: "",
           advertise_category: [],
           advertise_price: "",
+          advertise_owner: window.CS.getBMState().user.username.toString(),
           advertise_pictureUrl: "",
           advertise_counter: 0,
           advertise_status: "available",
