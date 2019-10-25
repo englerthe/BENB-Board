@@ -13,7 +13,9 @@ export enum ActionType {
     render_test = "render_test",
     server_called = "server_called",
     advertise_updated = "advertise_updated",
-    add_advertises_from_server = "add_advertises_from_server" 
+    add_advertises_from_server = "add_advertises_from_server",
+    search_advertise = "search_advertise",
+    update_searchbar= "update_searchbar"
 }
 export interface IAction {
     type: ActionType;

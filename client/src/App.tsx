@@ -21,7 +21,6 @@ declare let window: IWindow;
 interface IProps {
   stateCounter: number
 }
-
 export interface IAdvertisesLoadedAction extends IAction {
   advertises: IAdvertiseData[]
 }
@@ -43,7 +42,6 @@ export default class App extends React.PureComponent<IProps> {
     window.CS.clientAction(uiAction);
     axios.get('/advertises/read').then(response => {
       console.log("this data was loaded as a result of componentDidMount:");
-      console.log(response.data);
       const responseAction: IAdvertisesLoadedAction = {
         type: ActionType.add_advertises_from_server,
         advertises: response.data as IAdvertiseData[]
@@ -51,51 +49,53 @@ export default class App extends React.PureComponent<IProps> {
       window.CS.clientAction(responseAction);
     }).catch(function (error) { console.log(error); })
   }
-  render() {
+   render() {
     window.CS.log("App --> render()")
-    if (window.CS.getUIState().loggedIn) {
+    //if (window.CS.getUIState().loggedIn) {
     return (
       <div className="container-body">
-        <NavBar /> {/* oben  */}
+        <NavBar {...this.props}/> {/* oben  */}
         <div className="container-main-content"> {/* mitte */}
           <div className="container-categories">
             <Categories />
           </div> {/* mitte links */}
-          <Switch>
+          {/* <Switch> */}
             <Route path="/showadvertises" component={ShowAllAdvertises} />
             <Route path="/register" component={Register} /> {/* mitte mitte */}
             <Route exact={true} path="/" component={ShowAllAdvertises} />
-          </Switch>
+          {/* </Switch> */}
           <div className="container-userdetails">
-          <Login />
+          {(window.CS.getUIState().loggedIn)&&<Login /> }
+          {(!window.CS.getUIState().loggedIn)&&<Route path="/login" component={Login} /> }
+          
           </div> {/* mitte rechts */}
         </div>
         <div className="footer"> {/* unten */}
           <img src={copyrightImg} alt="Copyright by BENB" />Copyright by BENB
           </div>
       </div>
-    )} else {
-      return (
+    )//} else {
+     /* return (
         <div className="container-body">
-          <NavBar /> {/* oben  */}
-          <div className="container-main-content"> {/* mitte */}
+          <NavBar /> 
+          <div className="container-main-content"> 
             <div className="container-categories">
               <Categories />
-            </div> {/* mitte links */}
+            </div> 
             <Switch>
               <Route path="/showadvertises" component={ShowAllAdvertises} />
-              <Route path="/register" component={Register} /> {/* mitte mitte */}
+              <Route path="/register" component={Register} /> 
               <Route exact={true} path="/" component={ShowAllAdvertises} />
             </Switch>
             <div className="container-userdetails">
-            <Route path="/login" component={Login} />
-            </div> {/* mitte rechts */}
+            
+            </div> 
           </div>
-          <div className="footer"> {/* unten */}
+          <div className="footer"> 
             <img src={copyrightImg} alt="Copyright by BENB" />Copyright by BENB
             </div>
         </div>
-      )}
+      )}*/
     ;
   }
 

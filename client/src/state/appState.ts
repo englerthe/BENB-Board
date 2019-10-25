@@ -5,15 +5,12 @@ export interface IUser {
     password:string;
     email: string;
 }
-
-
 export interface ILogin{
     errorMessage:string;
 }
 export interface IRegister{
     errorMessage:string;
 }
-
 export interface IUI {
     counter: number;
     loggedIn: boolean;
@@ -21,7 +18,6 @@ export interface IUI {
     Login: ILogin;
     Register: IRegister;
 }
-
 export interface IAdvertiseData {
     _id: string;
     advertise_title: string;
@@ -37,19 +33,15 @@ export interface IAdvertiseData {
     advertise_message?: string;
     advertise_city: string;
   }
-
-
 export interface IBM{
     user:IUser;
-    advertises:IAdvertiseData[]
+    advertises:IAdvertiseData[];
+    searchbar: string;
 }
-
-
 export interface IState{
     UI:IUI;
     BM:IBM;
 }
-
 // initial state 
 export const initial:IState = {
 	UI: {
@@ -67,6 +59,7 @@ export const initial:IState = {
             password:"",
             email: ""
         },
-        advertises:[]
+        advertises:[],
+        searchbar:""
 	}
 };

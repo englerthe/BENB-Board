@@ -23,11 +23,11 @@ let Advertise = require('../models/Advertise');
         })
         .catch(error => console.log(error));
       });
-   */   
+   */
 
 //Homepage
 advertiseRoutes.route('/read').get(function (req, res) {
-    console.log("got a request");
+    console.log("got a request???");
     Advertise.find(function (err, advertises) {
         if (err) {
             console.log(err);
@@ -55,12 +55,13 @@ advertiseRoutes.route('/add').post(function (req, res) {
 
 //R: read one advertise defined be the id of the advertise
 
-advertiseRoutes.route('/:id').get(function (req, res) {
+/*advertiseRoutes.route('/:id').get(function (req, res) {
     let id = req.params.id;
+    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     Advertise.findById(id, function (err, advertise) {
         res.json(advertise);
     });
-});
+});*/
 
 //U: update the advertise with the given id
 // post -> put
@@ -99,5 +100,40 @@ advertiseRoutes.route('/delete/:id').post(function (req, res) {
             res.json('advertise deleted!');
     });
 });
+
+advertiseRoutes.route('/search-advertise/:query').get(function (req, res) {
+    console.log(req.params);
+    if (!req.params.query) {
+        res.json({ errorMessage: "Please insert search criteria" });
+    }
+    else {
+    console.log("searchstring:", req.params.query);
+    Advertise.find()
+        .then(eachAdvertise => {
+            let searchStr = req.params.query.toLowerCase();
+            console.log("searchstring:", searchStr);
+                let allAdvertiseTitle = [];
+                for (let i = 0; i < eachAdvertise.length; i++) {
+                    if (eachAdvertise[i].advertise_title.toLowerCase().indexOf(searchStr) != -1) {
+                        allAdvertiseTitle.push(eachAdvertise[i].advertise_title);
+                        console.log("allAdvertiseTitle:", allAdvertiseTitle)
+                    }
+                }
+                if (allAdvertiseTitle.length > 0) {
+                    Advertise.find().populate('advertise_owner').where('advertise_title').in(allAdvertiseTitle)
+                        .then(listofFoundAdvertises => {
+                            console.log("listofFoundAdvertises:", listofFoundAdvertises)
+                            res.json(listofFoundAdvertises);
+                        })
+                } else {
+                    res.json({ errorMessage: "No advertise found with this name ;-(" });
+                }
+
+            }
+        )
+        .catch(err => {
+            res.status(400).send('search failed');
+        });
+}});
 
 module.exports = advertiseRoutes;

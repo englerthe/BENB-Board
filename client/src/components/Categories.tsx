@@ -1,5 +1,16 @@
 import * as React from 'react';
 import { NavLink } from 'react-router-dom';
+import { IAdvertiseData, IState } from '../state/appState'
+import { reducerFunctions } from '../reducer/appReducer';
+import { IAction, ActionType } from '../framework/IAction';
+
+export interface IAdvertisesLoadedAction extends IAction {
+    advertises: IAdvertiseData[]
+}
+reducerFunctions[ActionType.server_called] = function (newState: IState, action: IAction) {
+    newState.UI.waitingForResponse = true;
+    return newState;
+}
 
 const Categories = (props: any) => {
     return (
