@@ -60,7 +60,7 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
     handleSwitchToEditMode = () => {
         this.setState({ edit_mode: true });
     }
-    handleTitleChange(event: any) {
+    handleTitleChange = (event: any) => {
         const newAdvertise = this.props.advertise;
         newAdvertise.advertise_title = event.target.value
         const action: IAdvertiseAction = {
