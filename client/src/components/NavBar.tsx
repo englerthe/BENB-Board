@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { NavLink } from 'react-router-dom';
 import { IWindow } from '../framework/IWindow';
+import '../App.css';
 
 const logoName = require('../images/benb-logo.jpg')
 declare let window: IWindow;
@@ -10,19 +11,18 @@ const nav = (props: any) => {
         return (
             <nav>
                 <div id="showlogo">
-                    <img src={logoName} alt="BENB-Board" />
+                    <img className="BENBlogo" src={logoName} alt="BENB-Board" />
                 </div>
                 <div>
                     <ul>
-                        <li></li>
                         <li><NavLink to="/">Home</NavLink></li>
                         <div className="nav-search">
                             <form action="/search-advertisements" method="get">
-                                <input type="text" name="title" placeholder="Search an advertisement by title" />
-                                <button type="submit">Search advertisement by title</button>
+                                <input className="NavBarSearchInput" type="text" name="title" placeholder="Search an advertisement by title" />
+                                <button className="NavBarSearchButton" type="submit">Search advertisement by title</button>
                             </form>
                         </div>
-                        <li><NavLink to="/showadvertises">Advertises</NavLink></li>
+                        <li><NavLink to="/showadvertises">My advertises</NavLink></li>
                     </ul>
                 </div>
             </nav>
@@ -32,16 +32,15 @@ const nav = (props: any) => {
         return (
             <nav>
                 <div id="showlogo">
-                    <img src={logoName} alt="BENB-Board" />
+                    <img className="BENBlogo" src={logoName} alt="BENB-Board" />
                 </div>
                 <div>
                     <ul>
-                        <li></li>
                         <li><NavLink to="/">Home</NavLink></li>
                         <div className="nav-search">
                             <form action="/search-advertisements" method="get">
-                                <input type="text" name="title" placeholder="Search an advertisement by title" />
-                                <button type="submit">Search advertisement by title</button>
+                                <input className="NavBarSearchInput" type="text" name="title" placeholder="Search an advertisement by title" />
+                                <button className="NavBarSearchButton" type="submit">Search advertisement by title</button>
                             </form>
                         </div>
                         <li><NavLink to="/login">Login</NavLink></li>
