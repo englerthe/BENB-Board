@@ -35,34 +35,75 @@
   border: solid 1px orange;
 }
 
-.footer {
-  min-height: 20px;
-  text-align: center;
-  border: solid 1px black;
+/* navbar */
+
+.BENBlogo {
+  width: 160px;
+  height: 80px;
+  padding: 3px;
 }
+
+nav {
+  display: flex;
+  align-items: center;
+  background-color: #333;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+nav li {
+  float: left;
+}
+
+.nav-search {
+  float: left;
+  text-align: center;
+  line-height: 46px;
+}
+
+.NavBarSearchInput {
+  padding: 10px 30px;
+  width: 250px;
+}
+
+.NavBarSearchButton {
+  border: none;
+  color: black;
+  padding: 12px 10px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.NavBarSearchButton:hover {
+  cursor: pointer;
+}
+
+nav li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 135px;
+  margin: 0px 30px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav li a:hover {
+  background-color: #555;
+  border-radius: 5px;
+}
+
+/* categories */
+
 .categories li {
   list-style: none;
 }
 
-#showlogo {
-  min-width: 200px;
-  min-height: 50px;
-  border: solid 1px black;
-}
-/* navbar */
-nav {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  min-height: 50px;
-}
-nav ul {
-  display: flex;
-  list-style: none;
-}
-nav li {
-  margin: 0 5px;
-}
 /* footer */
 .footer img {
   width: 30px;
@@ -70,6 +111,9 @@ nav li {
 }
 .footer {
   text-align: center;
+  min-height: 20px;
+  text-align: center;
+  border: solid 1px black;
 }
 
 /* SingleAdvertise */

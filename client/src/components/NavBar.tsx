@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { IWindow } from '../framework/IWindow';
+import '../App.css';
 import { reducerFunctions } from '../reducer/appReducer';
 import { ActionType, IAction } from '../framework/IAction';
 import { IAdvertiseData, IState } from '../state/appState';
@@ -32,48 +33,47 @@ export default class nav extends Component {
     }
     render() {
         if (window.CS.getUIState().loggedIn) {
-            return (
-                <nav>
-                    <div id="showlogo">
-                        <img src={logoName} alt="BENB-Board" />
-                    </div>
-                    <div>
-                        <ul>
-                            <li><NavLink to="/" onClick={this.handleCategorySearch} >Home</NavLink></li>
-                            <div className="nav-search">
-                                <form action="/search-advertisements" method="get">
-                                    <input type="text" name="title" placeholder="Search an advertisement by title" />
-                                    <button type="submit">Search advertisement by title</button>
-                                </form>
-                            </div>
-                            <li><NavLink to="/showadvertises" onClick={this.handleCategorySearch} >Advertises</NavLink></li>
-                        </ul>
-                    </div>
-                </nav>
-            )
-        }
+        return (
+            <nav>
+                <div id="showlogo">
+                    <img className="BENBlogo" src={logoName} alt="BENB-Board" />
+                </div>
+                <div>
+                    <ul>
+                        <li><NavLink to="/" onClick={this.handleCategorySearch} >Home</NavLink></li>
+                        <div className="nav-search">
+                            <form action="/search-advertisements" method="get">
+                                <input className="NavBarSearchInput" type="text" name="title" placeholder="Search an advertisement by title" />
+                                <button className="NavBarSearchButton" type="submit">Search advertisement by title</button>
+                            </form>
+                        </div>
+                        <li><NavLink to="/showadvertises" onClick={this.handleCategorySearch} >Advertises</NavLink></li>
+                    </ul>
+                </div>
+            </nav>
+        )
+    }
         else {
             return (
-                <nav>
-                    <div id="showlogo">
-                        <img src={logoName} alt="BENB-Board" />
-                    </div>
-                    <div>
-                        <ul>
-                            <li></li>
-                            <li><NavLink to="/" onClick={this.handleCategorySearch} >Home</NavLink></li>
-                            <div className="nav-search">
-                                <form action="/search-advertisements" method="get">
-                                    <input type="text" name="title" placeholder="Search an advertisement by title" />
-                                    <button type="submit">Search advertisement by title</button>
-                                </form>
-                            </div>
-                            <li><NavLink to="/login">Login</NavLink></li>
-                            <li><NavLink to="/register">Register</NavLink></li>
-                        </ul>
-                    </div>
-                </nav>
-            )
+            <nav>
+                <div id="showlogo">
+                    <img className="BENBlogo" src={logoName} alt="BENB-Board" />
+                </div>
+                <div>
+                    <ul>
+                        <li><NavLink to="/" onClick={this.handleCategorySearch} >Home</NavLink></li>
+                        <div className="nav-search">
+                            <form action="/search-advertisements" method="get">
+                                <input className="NavBarSearchInput" type="text" name="title" placeholder="Search an advertisement by title" />
+                                <button className="NavBarSearchButton" type="submit">Search advertisement by title</button>
+                            </form>
+                        </div>
+                        <li><NavLink to="/login">Login</NavLink></li>
+                        <li><NavLink to="/register">Register</NavLink></li>
+                    </ul>
+                </div>
+            </nav>
+        )
         }
     }
 }
