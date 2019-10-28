@@ -7,6 +7,12 @@ export interface IUser {
     email: string;
 }
 
+export interface ICommentData {
+    _id?: string;
+    comment_user: string;
+    comment_text: string;
+  }
+
 
 export interface ILogin{
     errorMessage:string;
@@ -40,9 +46,11 @@ export interface IAdvertiseData {
   }
 
 
+
 export interface IBM{
     user:IUser;
-    advertises:IAdvertiseData[]
+    advertises:IAdvertiseData[];
+    comment: ICommentData;
 }
 
 
@@ -68,6 +76,10 @@ export const initial:IState = {
             password:"",
             email: ""
         },
-        advertises:[]
+        advertises:[],
+        comment:{
+            comment_user: "",
+            comment_text: ""
+        }
 	}
 };
