@@ -7,15 +7,25 @@ const Categories = (props: any) => {
             <h2>Categories</h2>
             <ul>
 
-                <li><NavLink to="/">Cell Phones & Accessoires</NavLink></li>
-                <li><NavLink to="/">Electronic, Computers & Accessoires</NavLink></li>
-                <li><NavLink to="/">Motors</NavLink></li>
-                <li><NavLink to="/">Home & Garden</NavLink></li>
-                <li><NavLink to="/">Baby</NavLink></li>
-                <li><NavLink to="/">Clothing, Shoes & Accessoires</NavLink></li>
-                <li><NavLink to="/">Books</NavLink></li>
-                <li><NavLink to="/">Music & Movies</NavLink></li>
-                <li><NavLink to="/">Everything else</NavLink></li>
+                <li><NavLink to="/">antiques & collectors</NavLink></li>
+                <li><NavLink to="/">car, motorcycle & accessories</NavLink></li>
+                <li><NavLink to="/">baby & kids</NavLink></li>
+                <li><NavLink to="/">beauty & wellness</NavLink></li>
+                <li><NavLink to="/">books, movies & music</NavLink></li>
+                <li><NavLink to="/">electronics & computer</NavLink></li>
+                <li><NavLink to="/">mobile phone & equipment</NavLink></li>
+                <li><NavLink to="/">pet needs</NavLink></li>
+                <li><NavLink to="/">hobby & leisure</NavLink></li>
+                <li><NavLink to="/">property</NavLink></li>
+                <li><NavLink to="/">jobs & services</NavLink></li>
+                <li><NavLink to="/">clothes & fashion</NavLink></li>
+                <li><NavLink to="/">furniture, housing & household</NavLink></li>
+                <li><NavLink to="/">jewelry & accessories</NavLink></li>
+                <li><NavLink to="/">games & consoles</NavLink></li>
+                <li><NavLink to="/">sports, travel & outdoor</NavLink></li>
+                <li><NavLink to="/">tickets & events</NavLink></li>
+                <li><NavLink to="/">moving & help</NavLink></li>
+                <li><NavLink to="/">tools</NavLink></li>
 
             </ul>
         </div>

@@ -199,10 +199,25 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
                         <li className="category">
                         Category: <br></br> <select className="selectBox" name="category" value={this.props.advertise.advertise_category} onChange={this.handleCategoryChange}>
                             <option value="---">---</option>
-                            <option value="Handy">Handy</option>
-                            <option value="PC">PC</option>
-                            <option value="Vertrag">Vertrag</option>
-                            <option value="Sonstiges">Sonstiges</option>
+                            <option value="antiques & collectors">antiques & collectors</option>
+                            <option value="car, motorcycle & accessories">car, motorcycle & accessories</option>
+                            <option value="baby & kids">baby & kids</option>
+                            <option value="beauty & wellness">beauty & wellness</option>
+                            <option value="books, movies & music">books, movies & music</option>
+                            <option value="electronics & computer">electronics & computer</option>
+                            <option value="mobile phone & equipment">mobile phone & equipment</option>
+                            <option value="pet needs">pet needs</option>
+                            <option value="hobby & leisure">hobby & leisure</option>
+                            <option value="property">property</option>
+                            <option value="jobs & services">jobs & services</option>
+                            <option value="clothes & fashion">clothes & fashion</option>
+                            <option value="furniture, housing & household">furniture, housing & household</option>
+                            <option value="jewelry & accessories">jewelry & accessories</option>
+                            <option value="games & consoles">games & consoles</option>
+                            <option value="sports, travel & outdoor">sports, travel & outdoor</option>
+                            <option value="tickets & events">tickets & events</option>
+                            <option value="moving & help">moving & help</option>
+                            <option value="tools">tools</option>
                             </select>
                         </li>
                         {/*<li className="counter">Counter: <br></br> {this.props.advertise.advertise_counter}</li>*/}
