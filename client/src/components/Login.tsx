@@ -88,7 +88,7 @@ export default class Login extends Component {
         axios.post('/auth/login', window.CS.getBMState().user)
             .then(res => {
                 const data = res.data;
-                console.log(data);
+                console.log("res.data from axios call",data);
                 if (data.errorMessage) {
                     const uiAction: IErrorMessage = {
                         type: ActionType.login_error,
@@ -101,7 +101,9 @@ export default class Login extends Component {
                         user: data as IUser
                     }
                     window.CS.clientAction(loggedinAction);
+                    console.log("history before push:",history);
                     history.push("/showadvertises");
+                    console.log("history after push:",history);
                 }
             });
     }

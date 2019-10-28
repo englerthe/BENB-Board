@@ -28,7 +28,7 @@ reducerFunctions[ActionType.create_advertise] = function (newState: IState, acti
 export default class ShowAllAdvertises extends Component<IProps, IJSXState> {
     constructor(props: any) {
         console.log("new App component will be initialized");
-        console.log(window.CS.getBMState());
+        console.log("getBMState:", window.CS.getBMState());
         super(props);
         this.handleCreateAdvertise = this.handleCreateAdvertise.bind(this);
       }
@@ -39,8 +39,8 @@ export default class ShowAllAdvertises extends Component<IProps, IJSXState> {
       window.CS.getBMState().advertises.filter((item: any) => item.advertise_owner === window.CS.getBMState().user.username)
       :
       window.CS.getBMState().advertises
-      console.log(renderAdds);
-      console.log(window.CS.getBMState().user);
+      console.log("renderAdds:", renderAdds);
+      console.log("getBMState().user:", window.CS.getBMState().user);
         if (window.CS.getUIState().loggedIn){
           
         return (
