@@ -35,7 +35,6 @@ export default class Categories extends Component {
             <div className="categories">
                 <h2>Categories</h2>
                 <ul>
-            	    {/*params={ searchcategory: "antiques & collectors" }*/}
                     <li><Link to="/" id="antiques & collectors" onClick={this.handleCategorySearch} >antiques & collectors</Link></li>
                     <li><Link to="/" id="car, motorcycle & accessories" onClick={this.handleCategorySearch} >car, motorcycle & accessories</Link></li>
                     <li><Link to="/" id="baby & kids" onClick={this.handleCategorySearch} >baby & kids</Link></li>

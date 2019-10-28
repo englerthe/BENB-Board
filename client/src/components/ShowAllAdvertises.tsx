@@ -19,7 +19,6 @@ export interface IAdvertiseAction extends IAction {
   advertise: IAdvertiseData
 }
 reducerFunctions[ActionType.create_advertise] = function (newState: IState, action: IAdvertiseAction) {
-  console.log("test", newState.BM.advertises);
   newState.BM.advertises.push(action.advertise);
   newState.UI.waitingForResponse = false;
   return newState;
@@ -27,8 +26,6 @@ reducerFunctions[ActionType.create_advertise] = function (newState: IState, acti
 
 export default class ShowAllAdvertises extends Component<IProps, IJSXState> {
   constructor(props: any) {
-    console.log("new App component will be initialized");
-    console.log("getBMState:", window.CS.getBMState());
     super(props);
     this.handleCreateAdvertise = this.handleCreateAdvertise.bind(this);
   }
@@ -39,13 +36,10 @@ export default class ShowAllAdvertises extends Component<IProps, IJSXState> {
       window.CS.getBMState().advertises.filter((item: any) => item.advertise_owner === window.CS.getBMState().user.username)
       :
       window.CS.getBMState().advertises;
-    console.log("renderAdds:", renderAdds);
-    console.log("getBMState().user:", window.CS.getBMState().user);
     if (window.CS.getUIState().loggedIn) {
       if (window.CS.getUIState().searchcategory === "") {
         return (
           <div>
-            {/*{window.CS.getUIState().waitingForResponse.toString()}{window.CS.getUIState().counter}*/}
             {
               locationProp.location.pathname === "/showadvertises" &&
               <>
@@ -55,7 +49,7 @@ export default class ShowAllAdvertises extends Component<IProps, IJSXState> {
                 </p>
               </>
             }
-            <div> {/* if category ... else */}
+            <div>
               {renderAdds.map(advertise => <SingleAdvertise key={advertise._id} {...this.props} advertise={advertise} edit={false} />)}
             </div>
           </div>
@@ -64,7 +58,6 @@ export default class ShowAllAdvertises extends Component<IProps, IJSXState> {
         const renderFilter = window.CS.getBMState().advertises.filter((item: any) => item.advertise_category === window.CS.getUIState().searchcategory)
         return (
           <div>
-            {/*{window.CS.getUIState().waitingForResponse.toString()}{window.CS.getUIState().counter}*/}
             {
               locationProp.location.pathname === "/showadvertises" &&
               <>
@@ -74,7 +67,7 @@ export default class ShowAllAdvertises extends Component<IProps, IJSXState> {
                 </p>
               </>
             }
-            <div> {/* if category ... else */}
+            <div>
               {renderFilter.map(advertise => <SingleAdvertise key={advertise._id} {...this.props} advertise={advertise} edit={false} />)}
             </div>
           </div>
@@ -114,7 +107,7 @@ export default class ShowAllAdvertises extends Component<IProps, IJSXState> {
         advertise_title: "",
         advertise_type: "offer",
         advertise_description: "",
-        advertise_category: "",
+        advertise_category: "---",
         advertise_price: "",
         advertise_owner: window.CS.getBMState().user.username.toString(),
         advertise_pictureUrl: "",
@@ -129,7 +122,6 @@ export default class ShowAllAdvertises extends Component<IProps, IJSXState> {
       axios.post('/advertises/add', newAdvertise)
         .then(res => {
           window.CS.clientAction(action);
-          console.log('test:', res.data)
         });
     }
   }

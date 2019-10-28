@@ -28,7 +28,6 @@ reducerFunctions[ActionType.advertise_updated] = function (newState: IState, upd
 }
 reducerFunctions[ActionType.update_advertise] = function (newState: IState, updateAction: IAdvertiseAction) {
     let advertiseToChange: IAdvertiseData[] = newState.BM.advertises.filter(advertise => advertise._id === updateAction.advertise._id)
-    console.log(advertiseToChange);
     advertiseToChange[0].advertise_title = updateAction.advertise.advertise_title;
     advertiseToChange[0].advertise_type = updateAction.advertise.advertise_type;
     advertiseToChange[0].advertise_description = updateAction.advertise.advertise_description;
