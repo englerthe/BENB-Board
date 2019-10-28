@@ -21,6 +21,7 @@ export interface IUI {
     waitingForResponse: boolean;
     Login: ILogin;
     Register: IRegister;
+    category: string;
 }
 
 export interface IAdvertiseData {
@@ -58,7 +59,8 @@ export const initial:IState = {
 		loggedIn: false,
         waitingForResponse: false,
         Login: {errorMessage:""},
-        Register: {errorMessage:""}
+        Register: {errorMessage:""},
+        category: ""
     },
 	BM: {
         user:{

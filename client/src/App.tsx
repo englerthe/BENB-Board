@@ -1,9 +1,7 @@
 import React from 'react';
 import NavBar from './components/NavBar';
 import Categories from './components/Categories';
-import Userdetails from './components/Userdetails';
 import Login from './components/Login';
-import Home from './components/Home';
 import Register from './components/Register';
 import ShowAllAdvertises from './components/ShowAllAdvertises';
 import { Switch, Route } from 'react-router-dom';
@@ -43,7 +41,7 @@ export default class App extends React.PureComponent<IProps> {
     window.CS.clientAction(uiAction);
     axios.get('/advertises/read').then(response => {
       console.log("this data was loaded as a result of componentDidMount:");
-      console.log(response.data);
+      console.log("response.data:",response.data);
       const responseAction: IAdvertisesLoadedAction = {
         type: ActionType.add_advertises_from_server,
         advertises: response.data as IAdvertiseData[]
@@ -64,7 +62,7 @@ export default class App extends React.PureComponent<IProps> {
           <Switch>
             <Route path="/showadvertises" user={window.CS.getUIState().loggedIn} component={ShowAllAdvertises} />
             <Route path="/register" component={Register} /> {/* mitte mitte */}
-            <Route exact={true} path="/" component={ShowAllAdvertises} />
+            <Route exact={true} path="/" advertise={window.CS.getUIState().category} component={ShowAllAdvertises} />
           </Switch>
           <div className="container-userdetails">
           <Login />
