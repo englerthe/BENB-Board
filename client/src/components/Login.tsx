@@ -96,7 +96,6 @@ export default class Login extends Component {
         axios.post('/auth/login', window.CS.getBMState().user)
             .then(res => {
                 const data = res.data;
-                console.log("res.data from axios call", data);
                 if (data.errorMessage) {
                     const uiAction: IErrorMessage = {
                         type: ActionType.login_error,

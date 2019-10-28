@@ -40,8 +40,6 @@ export default class App extends React.PureComponent<IProps> {
     }
     window.CS.clientAction(uiAction);
     axios.get('/advertises/read').then(response => {
-      console.log("this data was loaded as a result of componentDidMount:");
-      console.log("response.data:",response.data);
       const responseAction: IAdvertisesLoadedAction = {
         type: ActionType.add_advertises_from_server,
         advertises: response.data as IAdvertiseData[]

@@ -28,7 +28,6 @@ export default class nav extends Component {
             type: ActionType.update_searchcategory,
             searchcategory: "",
         }
-        console.log(action.searchcategory);
         window.CS.clientAction(action);
     }
     render() {
