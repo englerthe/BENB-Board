@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { ActionType, IAction } from '../framework/IAction';
 import { IState, IUser } from '../state/appState';
 import axios from 'axios';
@@ -8,7 +8,9 @@ import { IUserAction } from './Register';
 import history from '../framework/history';
 
 declare let window: IWindow;
-
+export interface ISearchAction extends IAction {
+    searchcategory: string;
+}
 export interface IErrorMessage extends IAction {
     errorMessage: string;
 }
@@ -29,35 +31,41 @@ reducerFunctions[ActionType.user_logged_out] = function (newState: IState, actio
     newState.UI.waitingForResponse = false;
     newState.UI.Login.errorMessage = "";
     newState.UI.loggedIn = false;
-    newState.BM.user = {lastname:"",firstname:"",username:"",password:"",email:""};
+
+    newState.BM.user = { lastname: "", firstname: "", username: "", password: "", email: "" };
     return newState
 }
+
+reducerFunctions[ActionType.update_searchcategory] = function (newState: IState, action: ISearchAction) {
+    newState.UI.searchcategory = action.searchcategory;
+    return newState;
+}    
 
 export default class Login extends Component {
     render() {
         if (window.CS.getUIState().loggedIn)
-        return (
-            <div>
-                <p>You are logged in as {window.CS.getBMState().user.username}</p>
-                <button onClick={this.handleLogout}>Logout</button>
-            </div>
-        )
-    else
-        return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                    <label htmlFor="username">Username:</label>
-                    <input type="username" placeholder="Your username" onChange={this.handleUsernameChange} value={window.CS.getBMState().user.username} />
-                    <br />
-                    <label htmlFor="password">Password:</label>
-                    <input type="password" placeholder="********" onChange={this.handlePasswordChange} value={window.CS.getBMState().user.password} />
-                    <br />
-                    <input type="submit" value="Login" />
-                </form>
-                <p>{window.CS.getUIState().Login.errorMessage}</p>
+            return (
+                <div>
+                    <p>You are logged in as {window.CS.getBMState().user.username}</p>
+                    <button onClick={this.handleLogout}>Logout</button>
+                </div>
+            )
+        else
+            return (
+                <div>
+                    <form onSubmit={this.handleSubmit}>
+                        <label htmlFor="username">Username:</label>
+                        <input type="username" placeholder="Your username" onChange={this.handleUsernameChange} value={window.CS.getBMState().user.username} />
+                        <br />
+                        <label htmlFor="password">Password:</label>
+                        <input type="password" placeholder="********" onChange={this.handlePasswordChange} value={window.CS.getBMState().user.password} />
+                        <br />
+                        <input type="submit" value="Login" />
+                    </form>
+                    <p>{window.CS.getUIState().Login.errorMessage}</p>
 
-            </div>
-        )
+                </div>
+            )
     }
 
     handleUsernameChange(event: any) {
@@ -88,7 +96,6 @@ export default class Login extends Component {
         axios.post('/auth/login', window.CS.getBMState().user)
             .then(res => {
                 const data = res.data;
-                console.log(data);
                 if (data.errorMessage) {
                     const uiAction: IErrorMessage = {
                         type: ActionType.login_error,
@@ -100,6 +107,11 @@ export default class Login extends Component {
                         type: ActionType.user_logged_in,
                         user: data as IUser
                     }
+                    const action: ISearchAction = {
+                        type: ActionType.update_searchcategory,
+                        searchcategory: "",
+                    }
+                    window.CS.clientAction(action);
                     window.CS.clientAction(loggedinAction);
                     history.push("/showadvertises");
                 }
@@ -108,8 +120,13 @@ export default class Login extends Component {
 
     handleLogout() {
         const uiAction: IAction = {
-            type: ActionType.server_called
+            type: ActionType.server_called,
         }
+        const action: ISearchAction = {
+            type: ActionType.update_searchcategory,
+            searchcategory: "",
+        }
+        window.CS.clientAction(action);
         window.CS.clientAction(uiAction);
         axios.get('/auth/logout').then(res => {
             const loggedoutAction: IAction = {
@@ -119,6 +136,5 @@ export default class Login extends Component {
         }
         );
     }
-
 
 }
