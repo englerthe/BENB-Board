@@ -13,7 +13,6 @@ export interface ICommentData {
     comment_text: string;
   }
 
-
 export interface ILogin{
     errorMessage:string;
 }

@@ -8,24 +8,21 @@ import history from '../framework/history';
 
 declare let window: IWindow;
 
-
 export interface IUserAction extends IAction {
     user: IUser
 }
-
 export interface IComment extends IAction {
     comment: ICommentData
 }
-
-
+export interface IErrorMessage extends IAction {
+    errorMessage: string;
+}
 
 reducerFunctions[ActionType.add_comment] = function (newState: IState, updateAction: IComment) {
     console.log(updateAction.comment);
     newState.BM.comment = updateAction.comment;
     return newState
 }
-
-
 
 export default class Comment extends Component {
     render() {
@@ -44,7 +41,6 @@ export default class Comment extends Component {
             </div>
         )
     }
-
     handleCommentUser(event: any) {
         let user = window.CS.getBMState().user;
         user.firstname = event.target.value
@@ -64,7 +60,7 @@ export default class Comment extends Component {
         window.CS.clientAction(action);
     }
 
-
+    /*
     handleSave = (event: any) => {
         this.setState({ edit_mode: false });
         const uiAction: IAction = {
@@ -79,9 +75,8 @@ export default class Comment extends Component {
                 window.CS.clientAction(uiAction);
             });
     }
-
-
-
+    */
+   
     handleSubmit(event: any) {
         event.preventDefault();
         const uiAction: IAction = {
@@ -107,5 +102,6 @@ export default class Comment extends Component {
                 }
             });
     }
+    
 
 }
