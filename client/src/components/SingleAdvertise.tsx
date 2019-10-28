@@ -1,7 +1,7 @@
 import React from 'react';
 import { IAdvertiseAction } from './ShowAllAdvertises';
 import { ActionType, IAction } from '../framework/IAction';
-import { IAdvertiseData, IState } from '../state/appState'
+import { IAdvertiseData, IState } from '../state/appState';
 import axios from 'axios';
 import '../App.css';
 

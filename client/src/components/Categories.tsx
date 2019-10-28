@@ -1,34 +1,63 @@
-import * as React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { Component } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import { IAdvertiseData, IState } from '../state/appState';
+import { ActionType, IAction } from '../framework/IAction';
+import { reducerFunctions } from '../reducer/appReducer';
+import { IWindow } from '../framework/IWindow';
 
-const Categories = (props: any) => {
-    return (
-        <div className="categories">
-            <h2>Categories</h2>
-            <ul>
+declare let window: IWindow;
 
-                <li><NavLink to="/">antiques & collectors</NavLink></li>
-                <li><NavLink to="/">car, motorcycle & accessories</NavLink></li>
-                <li><NavLink to="/">baby & kids</NavLink></li>
-                <li><NavLink to="/">beauty & wellness</NavLink></li>
-                <li><NavLink to="/">books, movies & music</NavLink></li>
-                <li><NavLink to="/">electronics & computer</NavLink></li>
-                <li><NavLink to="/">mobile phone & equipment</NavLink></li>
-                <li><NavLink to="/">pet needs</NavLink></li>
-                <li><NavLink to="/">hobby & leisure</NavLink></li>
-                <li><NavLink to="/">property</NavLink></li>
-                <li><NavLink to="/">jobs & services</NavLink></li>
-                <li><NavLink to="/">clothes & fashion</NavLink></li>
-                <li><NavLink to="/">furniture, housing & household</NavLink></li>
-                <li><NavLink to="/">jewelry & accessories</NavLink></li>
-                <li><NavLink to="/">games & consoles</NavLink></li>
-                <li><NavLink to="/">sports, travel & outdoor</NavLink></li>
-                <li><NavLink to="/">tickets & events</NavLink></li>
-                <li><NavLink to="/">moving & help</NavLink></li>
-                <li><NavLink to="/">tools</NavLink></li>
-
-            </ul>
-        </div>
-    )
+interface IProps {
+    searchcategory: string;
 }
-export default Categories;
+export interface ISearchAction extends IAction {
+    searchcategory: string;
+}
+
+reducerFunctions[ActionType.update_searchcategory] = function (newState: IState, action: ISearchAction) {
+    newState.UI.searchcategory = action.searchcategory;
+    return newState;
+}
+
+export default class Categories extends Component {
+    constructor(props: IProps) {
+        super(props);
+    }
+    handleCategorySearch = (event: any) => {
+        const action: ISearchAction = {
+            type: ActionType.update_searchcategory,
+            searchcategory: event.target.id,
+        }
+        window.CS.clientAction(action);
+    }
+    render() {
+        return (
+            <div className="categories">
+                <h2>Categories</h2>
+                <ul>
+            	    {/*params={ searchcategory: "antiques & collectors" }*/}
+                    <li><Link to="/" id="antiques & collectors" onClick={this.handleCategorySearch} >antiques & collectors</Link></li>
+                    <li><Link to="/" id="car, motorcycle & accessories" onClick={this.handleCategorySearch} >car, motorcycle & accessories</Link></li>
+                    <li><Link to="/" id="baby & kids" onClick={this.handleCategorySearch} >baby & kids</Link></li>
+                    <li><Link to="/" id="beauty & wellness" onClick={this.handleCategorySearch} >beauty & wellness</Link></li>
+                    <li><Link to="/" id="books, movies & music" onClick={this.handleCategorySearch} >books, movies & music</Link></li>
+                    <li><Link to="/" id="electronics & computer" onClick={this.handleCategorySearch} >electronics & computer</Link></li>
+                    <li><Link to="/" id="mobile phone & equipment" onClick={this.handleCategorySearch} >mobile phone & equipment</Link></li>
+                    <li><Link to="/" id="pet needs" onClick={this.handleCategorySearch} >pet needs</Link></li>
+                    <li><Link to="/" id="hobby & leisure" onClick={this.handleCategorySearch} >hobby & leisure</Link></li>
+                    <li><Link to="/" id="property" onClick={this.handleCategorySearch} >property</Link></li>
+                    <li><Link to="/" id="jobs & services" onClick={this.handleCategorySearch} >jobs & services</Link></li>
+                    <li><Link to="/" id="clothes & fashion" onClick={this.handleCategorySearch}>clothes & fashion</Link></li>
+                    <li><Link to="/" id="furniture, housing & household" onClick={this.handleCategorySearch} >furniture, housing & household</Link></li>
+                    <li><Link to="/" id="jewelry & accessories" onClick={this.handleCategorySearch} >jewelry & accessories</Link></li>
+                    <li><Link to="/" id="games & consoles" onClick={this.handleCategorySearch} >games & consoles</Link></li>
+                    <li><Link to="/" id="sports, travel & outdoor" onClick={this.handleCategorySearch} >sports, travel & outdoor</Link></li>
+                    <li><Link to="/" id="tickets & events" onClick={this.handleCategorySearch} >tickets & events</Link></li>
+                    <li><Link to="/" id="moving & help" onClick={this.handleCategorySearch} >moving & help</Link></li>
+                    <li><Link to="/" id="tools" onClick={this.handleCategorySearch} >tools</Link></li>
+
+                </ul>
+            </div>
+        )
+    }
+}

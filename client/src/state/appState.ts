@@ -21,13 +21,14 @@ export interface IUI {
     waitingForResponse: boolean;
     Login: ILogin;
     Register: IRegister;
+    searchcategory: string;
 }
 
 export interface IAdvertiseData {
     _id: string;
     advertise_title: string;
     advertise_type: string;
-    advertise_category: [];
+    advertise_category: string;
     advertise_description: string;
     advertise_price: string;
     advertise_pictureUrl: string;
@@ -58,7 +59,9 @@ export const initial:IState = {
 		loggedIn: false,
         waitingForResponse: false,
         Login: {errorMessage:""},
-        Register: {errorMessage:""}
+        Register: {errorMessage:""},
+        //searchcategory: "clothes & fashion"
+        searchcategory: ""
     },
 	BM: {
         user:{
