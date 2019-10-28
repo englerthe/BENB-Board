@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 const advertiseSchema = new Schema({
     advertise_title: String,
     advertise_type: {type: String, enum: ["offer", "search"]},
-    advertise_category: Array,
+    advertise_category: {type: String, enum: ["---", "antiques & collectors","car, motorcycle & accessories","baby & kids","beauty & wellness","books, movies & music","electronics & computer","mobile phone & equipment","pet needs","hobby & leisure","property","jobs & services","clothes & fashion","furniture, housing & household","jewelry & accessories","games & consoles","sports, travel & outdoor","tickets & events","moving & help","tools"]},
     advertise_description: String,
     advertise_price: String,
     advertise_pictureUrl: String,

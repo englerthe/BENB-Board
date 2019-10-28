@@ -13,7 +13,8 @@ export enum ActionType {
     render_test = "render_test",
     server_called = "server_called",
     advertise_updated = "advertise_updated",
-    add_advertises_from_server = "add_advertises_from_server" 
+    add_advertises_from_server = "add_advertises_from_server",
+    update_searchcategory= "update_searchcategory"
 }
 export interface IAction {
     type: ActionType;
