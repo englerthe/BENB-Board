@@ -29,21 +29,25 @@ export default class ShowAllAdvertises extends Component<IProps, IJSXState> {
     this.handleCreateAdvertise = this.handleCreateAdvertise.bind(this);
   }
   render() {
-    const renderFilter = window.CS.getBMState().advertises.filter((item: any) => item.advertise_category === window.CS.getUIState().searchcategory);
+    let locationProp = this.props as any;
+    //render for categories)
+    console.log("advertises", window.CS.getBMState().advertises);
+    const renderCategories = window.CS.getBMState().advertises.filter((item: any) => item.advertise_category === window.CS.getUIState().searchcategory);
+    //render for searchbar)
     let searchStr = window.CS.getUIState().searchbar.toLowerCase();
-    let allFoundAdvertises = [];
+    let renderSearchbar = [];
     for (let i = 0; i < window.CS.getBMState().advertises.length; i++) {
-        if (window.CS.getBMState().advertises[i].advertise_title.toLowerCase().indexOf(searchStr) != -1) {
-          allFoundAdvertises.push(window.CS.getBMState().advertises[i]);
+        if (window.CS.getBMState().advertises[i].advertise_title.toLowerCase().indexOf(searchStr) !== -1) {
+          renderSearchbar.push(window.CS.getBMState().advertises[i]);
         }
     }
-
-    let locationProp = this.props as any;
-    const renderAdds = locationProp.location.pathname === "/showadvertises"
+    //render for own advertises)
+    const renderOwnAdds = locationProp.location.pathname === "/showadvertises"
       ?
       window.CS.getBMState().advertises.filter((item: any) => item.advertise_owner === window.CS.getBMState().user.username)
       :
       window.CS.getBMState().advertises;
+    //
     if (window.CS.getUIState().loggedIn) { //if user is logged in ...
       if (window.CS.getUIState().searchcategory === "" && window.CS.getUIState().searchbar === "") { // ...and no category and search is selected
         return (
@@ -58,7 +62,7 @@ export default class ShowAllAdvertises extends Component<IProps, IJSXState> {
               </>
             } {/* ==> show all advertises from logged-in-user */}
             <div>
-              {renderAdds.map(advertise => <SingleAdvertise key={advertise._id} {...this.props} advertise={advertise} edit={false} />)}
+              {renderOwnAdds.map(advertise => <SingleAdvertise key={advertise._id} {...this.props} advertise={advertise} edit={false} />)}
             </div>
           </div>
         )
@@ -76,7 +80,7 @@ export default class ShowAllAdvertises extends Component<IProps, IJSXState> {
               </>
             }
             <div> {/* ==> show all adds from selected category */}
-              {renderFilter.map(advertise => <SingleAdvertise key={advertise._id} {...this.props} advertise={advertise} edit={false} />)}
+              {renderCategories.map(advertise => <SingleAdvertise key={advertise._id} {...this.props} advertise={advertise} edit={false} />)}
             </div>
           </div>
         )
@@ -94,7 +98,7 @@ export default class ShowAllAdvertises extends Component<IProps, IJSXState> {
             </>
           }
           <div> {/* ==> show all adds from search */}
-            {allFoundAdvertises.map(advertise => <SingleAdvertise key={advertise._id} {...this.props} advertise={advertise} edit={false} />)}
+            {renderSearchbar.map(advertise => <SingleAdvertise key={advertise._id} {...this.props} advertise={advertise} edit={false} />)}
           </div>
         </div>
         )
@@ -116,7 +120,7 @@ export default class ShowAllAdvertises extends Component<IProps, IJSXState> {
         return (
           <div>
             <div> {/* ==> show all adds from selected category */}
-              {renderFilter.map(advertise => <SingleAdvertise key={advertise._id} {...this.props} advertise={advertise} edit={false} />)}
+              {renderCategories.map(advertise => <SingleAdvertise key={advertise._id} {...this.props} advertise={advertise} edit={false} />)}
             </div>
           </div>
         )
@@ -124,7 +128,7 @@ export default class ShowAllAdvertises extends Component<IProps, IJSXState> {
         return (
         <div>
           <div> {/* ==> show all adds from search */}
-            {allFoundAdvertises.map(advertise => <SingleAdvertise key={advertise._id} {...this.props} advertise={advertise} edit={false} />)}
+            {renderSearchbar.map(advertise => <SingleAdvertise key={advertise._id} {...this.props} advertise={advertise} edit={false} />)}
           </div>
         </div>
         )
