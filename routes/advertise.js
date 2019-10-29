@@ -1,8 +1,10 @@
 const express = require('express');
 const advertiseRoutes = express.Router();
+const commentRoutes = express.Router();
 
 
 let Advertise = require('../models/Advertise');
+let Comment = require('../models/Comment');
 
 //now we define the rest endpoints for the CRUD methods and implement the CRUD methods
 //R: read all advertises
@@ -50,6 +52,21 @@ advertiseRoutes.route('/add').post(function (req, res) {
         })
         .catch(err => {
             res.status(400).send('adding new advertise failed');
+        });
+});
+
+// C: Create a new comment
+
+commentRoutes.route('/comment/add').post(function (req, res) {
+    console.log("Request to save this Comment:" + JSON.stringify(req.body));
+    let comment = new Comment(req.body);
+    console.log(comment)
+    comment.save()
+        .then(comment => {
+            res.status(200).json({ 'comment': 'comment added successfully' });
+        })
+        .catch(err => {
+            res.status(400).send('adding new comment failed');
         });
 });
 
