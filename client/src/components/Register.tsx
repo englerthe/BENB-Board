@@ -23,12 +23,10 @@ reducerFunctions[ActionType.register_error] = function (newState: IState, action
 }
 
 reducerFunctions[ActionType.update_user] = function (newState: IState, updateAction: IUserAction) {
-    console.log(updateAction.user);
     newState.BM.user = updateAction.user;
     return newState
 }
 reducerFunctions[ActionType.user_created] = function (newState: IState, updateAction: IUserAction) {
-    console.log(updateAction.user);
     newState.UI.waitingForResponse = false;
     newState.UI.loggedIn = true;
     return newState
@@ -114,7 +112,6 @@ export default class Register extends Component {
         axios.post('/auth/signup', window.CS.getBMState().user)
             .then(res => {
                 const data = res.data;
-                console.log(data);
                 if (data.errorMessage) {
                     const uiAction: IErrorMessage = {
                         type: ActionType.register_error,

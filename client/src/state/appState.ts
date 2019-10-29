@@ -27,6 +27,7 @@ export interface IUI {
     Login: ILogin;
     Register: IRegister;
     searchcategory: string;
+    searchbar: string;
 }
 
 export interface IAdvertiseData {
@@ -67,7 +68,7 @@ export const initial:IState = {
         waitingForResponse: false,
         Login: {errorMessage:""},
         Register: {errorMessage:""},
-        //searchcategory: "clothes & fashion"
+        searchbar:"",
         searchcategory: ""
     },
 	BM: {
