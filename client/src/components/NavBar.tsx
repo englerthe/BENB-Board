@@ -58,8 +58,9 @@ export default class nav extends Component {
         if (window.CS.getUIState().loggedIn) {
             return (
                 <nav>
-                    <div id="showlogo">
-                        <img className="BENBlogo" src={logoName} alt="BENB-Board" />
+                    <div className="TitleBar">
+                        <h2>Buy or Sell something today!</h2>
+                        <p>Free listings of your private advertisements, join for free now!</p>
                     </div>
                     <div>
                         <ul>
@@ -79,8 +80,9 @@ export default class nav extends Component {
         else {
             return (
                 <nav>
-                    <div id="showlogo">
-                        <img className="BENBlogo" src={logoName} alt="BENB-Board" />
+                    <div className="TitleBar">
+                        <h2>Buy or Sell something today!</h2>
+                        <p>Free listings of your private advertisements, join for free now!</p>
                     </div>
                     <div>
                         <ul>
@@ -91,7 +93,7 @@ export default class nav extends Component {
                                     <button className="NavBarSearchButton" onClick={this.clearSearch}>Clear Searchfield</button>
                                 </NavLink>
                             </div>
-                            <li><NavLink to="/register">Register</NavLink></li>
+                            <li><NavLink to="/register">Join us</NavLink></li>
                             <li><NavLink to="/login">Login</NavLink></li>
                         </ul>
                     </div>

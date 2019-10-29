@@ -38,14 +38,14 @@
 
 /*------------------------------ navbar ------------------------------*/
 
-.BENBlogo {
-  width: 160px;
-  height: 80px;
-  padding: 3px;
+.TitleBar {
+  text-align: center;
 }
 
 nav {
   display: flex;
+  flex-direction: column;
+  color: white;
   align-items: center;
   background-color: #333;
 }
@@ -117,14 +117,18 @@ nav li a:hover {
 
 .categories li {
   list-style-type: none;
-  padding: 10px 0px 10px 5px;
+  padding: 10px 0 10px 5px;
   border-bottom: 1px solid #9999;
-  
 }
 
 .categories li a {
   color: white;
   text-decoration: none;
+  padding: 10px 0 10px 5px;
+}
+
+.categories li a:hover {
+  text-decoration: underline;
 }
 
 /*------------------------------ Login ------------------------------*/
