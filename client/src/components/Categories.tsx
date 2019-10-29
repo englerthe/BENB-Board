@@ -33,7 +33,7 @@ export default class Categories extends Component {
     render() {
         return (
             <div className="categories">
-                <h2>Categories</h2>
+                <h3>Categories</h3>
                 <ul>
                     <li><Link to="/" id="antiques & collectors" onClick={this.handleCategorySearch} >antiques & collectors</Link></li>
                     <li><Link to="/" id="car, motorcycle & accessories" onClick={this.handleCategorySearch} >car, motorcycle & accessories</Link></li>

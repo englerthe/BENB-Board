@@ -47,7 +47,7 @@ export default class nav extends Component {
                                 <button className="NavBarSearchButton" type="submit">Search advertisement by title</button>
                             </form>
                         </div>
-                        <li><NavLink to="/showadvertises" onClick={this.handleCategorySearch} >Advertises</NavLink></li>
+                        <li><NavLink to="/showadvertises" onClick={this.handleCategorySearch} >My advertises</NavLink></li>
                     </ul>
                 </div>
             </nav>
@@ -68,8 +68,8 @@ export default class nav extends Component {
                                 <button className="NavBarSearchButton" type="submit">Search advertisement by title</button>
                             </form>
                         </div>
-                        <li><NavLink to="/login">Login</NavLink></li>
                         <li><NavLink to="/register">Register</NavLink></li>
+                        <li><NavLink to="/login">Login</NavLink></li>
                     </ul>
                 </div>
             </nav>

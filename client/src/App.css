@@ -1,14 +1,9 @@
-/* containers */
+/*------------------------------ containers ------------------------------*/
 .container-body {
-  margin-left: 0px;
-  margin-top: 0px;
-  margin-right: 0px;
-  margin-bottom: 0px;
-  padding: 5px;
+  margin: 0px;
   display: flex;
   flex-direction: column;
   background-color: rgb(200, 200, 200);
-  border: solid 1px red;
   /*font-family: 'Chango', cursive;*/
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 1.1rem;
@@ -19,23 +14,29 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  border: solid 1px yellow;
 }
 
 .container-categories {
-  min-width: 200px;
-  max-width: 200px;
-  border: solid 1px orange;
-  font-size: 14px;
+  min-width: 250px;
+  max-width: 250px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 1.0rem;
+  background-color: #333;
+  border-top: 1px solid yellow;
+  border-bottom: 1px solid yellow;
 }
 
 .container-userdetails {
-  min-width: 200px;
-  max-width: 200px;
-  border: solid 1px orange;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 1.0rem;
+  min-width: 250px;
+  max-width: 250px;
+  border-top: 1px solid yellow;
+  background-color: #333;
+  border-bottom: 1px solid yellow;
 }
 
-/* navbar */
+/*------------------------------ navbar ------------------------------*/
 
 .BENBlogo {
   width: 160px;
@@ -96,15 +97,139 @@ nav li a {
 nav li a:hover {
   background-color: #555;
   border-radius: 5px;
+  text-decoration: underline;
 }
 
-/* categories */
+/*------------------------------ categories ------------------------------*/
+
+.categories h3{
+  color: white;
+  padding-left: 70px;
+  text-decoration: underline;
+}
+
+.categories ul {
+  margin: 0px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-bottom: 50px;
+}
 
 .categories li {
-  list-style: none;
+  list-style-type: none;
+  padding: 10px 0px 10px 5px;
+  border-bottom: 1px solid #9999;
+  
 }
 
-/* footer */
+.categories li a {
+  color: white;
+  text-decoration: none;
+}
+
+/*------------------------------ Login ------------------------------*/
+.loginFormDiv {
+  color: white;
+  padding: 5px;
+  padding-top: 10px;
+  padding-left: 10px;
+  margin-bottom: 50px;
+}
+
+.loginFormMain {
+  margin: 0 auto;
+}
+
+.loginFormMain label{
+  display: inline-block;
+}
+
+.loginFormMain input[type=username],
+.loginFormMain input[type=password] {
+  padding-left: 10px;
+  margin: 10px;
+  width: 200px;
+  height: 30px;
+}
+
+.loginFormMain input[type=submit] {
+  align-items: center;
+  width: 80px;
+  height: 25px;
+}
+
+/*------------------------------ Logout ------------------------------*/ 
+
+.wholeLogout {
+  color: white;
+  padding: 5px;
+  padding-top: 10px;
+  padding-left: 10px;
+  margin-bottom: 50px;
+}
+
+.wholeLogout button {
+  align-items: center;
+  width: 80px;
+  height: 25px;
+}
+
+/*------------------------------ Register ------------------------------*/
+
+.registerFormDiv {
+  color: black;
+  padding-top: 30px;
+  margin-bottom: 50px;
+}
+
+.registerFormMain {
+  margin: 0 auto;
+  border: 3px solid yellow;
+  box-shadow: 5px 5px 5px rgb(48, 48, 48);
+  padding: 35px 50px 50px 50px;
+}
+
+.registerFormMain label{
+  display: inline-block;
+}
+
+.registerFormMain input[type=firstname]{
+  padding-left: 10px;
+  margin: 10px;
+  width: 193px;
+  height: 30px;
+}
+
+
+.registerFormMain input[type=lastname],
+.registerFormMain input[type=username] {
+  padding-left: 10px;
+  margin: 10px;
+  width: 195px;
+  height: 30px;
+}
+
+.registerFormMain input[type=password] {
+  padding-left: 10px;
+  margin: 10px;
+  width: 200px;
+  height: 30px;
+}
+
+.registerFormMain input[type=email] {
+  padding-left: 10px;
+  margin: 10px;
+  width: 230px;
+  height: 30px;
+}
+
+.registerFormMain input[type=submit] {
+  align-items: center;
+  width: 295px;
+  height: 25px;
+}
+
+/*------------------------------ footer ------------------------------*/
 .footer img {
   width: 30px;
   height: 30px;
@@ -113,10 +238,13 @@ nav li a:hover {
   text-align: center;
   min-height: 20px;
   text-align: center;
-  border: solid 1px black;
+  color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #333;
 }
 
-/* SingleAdvertise */
+/*------------------------------ SingleAdvertise ------------------------------*/
 .wholeProduct {
   background-color: rgb(151, 149, 149);
   display: flex;
@@ -268,7 +396,7 @@ nav li a:hover {
   font-weight: bold;
 }
 
-/* SingleAdvertise */
+/*------------------------------ ShowAllAdvertises ------------------------------*/
 .textFromWholeProduct {
   color: black;
   margin: 25px 10px 25px 0px;
