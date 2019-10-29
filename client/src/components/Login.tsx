@@ -46,15 +46,18 @@ export default class Login extends Component {
     render() {
         if (window.CS.getUIState().loggedIn)
             return (
-                <div>
-                    <p>You are logged in as {window.CS.getBMState().user.username}</p>
+                <div className="wholeLogout">
+                    <p>Welcome, {window.CS.getBMState().user.username} !</p>
+                    <h4>contact informations:</h4>
+                    <p>Firstname: {window.CS.getBMState().user.firstname}</p>
+                    <p>Lastname: {window.CS.getBMState().user.lastname}</p>
                     <button onClick={this.handleLogout}>Logout</button>
                 </div>
             )
         else
             return (
-                <div>
-                    <form onSubmit={this.handleSubmit}>
+                <div className="loginFormDiv">
+                    <form className="loginFormMain" onSubmit={this.handleSubmit}>
                         <label htmlFor="username">Username:</label>
                         <input type="username" placeholder="Your username" onChange={this.handleUsernameChange} value={window.CS.getBMState().user.username} />
                         <br />

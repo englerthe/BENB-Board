@@ -191,7 +191,7 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
                         <li className="status">
                             <label htmlFor="status">Choose a Status: <br></br> </label>
                             <input type="radio" name="status" value="available" checked={this.props.advertise.advertise_status === "available"} onClick={this.handleStatusChange} /> <span className="availableGreen">available</span>
-                            <input type="radio" name="status" value="sold" checked={this.props.advertise.advertise_status === "sold"} onClick={this.handleStatusChange} /> <span>sold</span>
+                            <input type="radio" name="status" value="sold" checked={this.props.advertise.advertise_status === "sold"} onClick={this.handleStatusChange} /> <span className="soldRed">sold</span>
                         </li>
                         {/*<li className="comment">Comment: <br></br> {this.props.advertise.advertise_comment}</li>*/}
                         {/*<li className="message">Message: <br></br> {this.props.advertise.advertise_message}</li>*/}

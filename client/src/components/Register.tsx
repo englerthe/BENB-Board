@@ -34,13 +34,13 @@ reducerFunctions[ActionType.user_created] = function (newState: IState, updateAc
 export default class Register extends Component {
     render() {
         return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
+            <div className="registerFormDiv" >
+                <form className="registerFormMain" onSubmit={this.handleSubmit}>
                     <label htmlFor="firstname">First name:</label>
-                    <input type="text" placeholder="firstname" onChange={this.handleFirstnameChange} value={window.CS.getBMState().user.firstname} />
+                    <input type="firstname" placeholder="firstname" onChange={this.handleFirstnameChange} value={window.CS.getBMState().user.firstname} />
                     <br />
                     <label htmlFor="lastname">Last name:</label>
-                    <input type="text" placeholder="lastname" onChange={this.handleLastnameChange} value={window.CS.getBMState().user.lastname} />
+                    <input type="lastname" placeholder="lastname" onChange={this.handleLastnameChange} value={window.CS.getBMState().user.lastname} />
                     <br />
                     <label htmlFor="username">Username:</label>
                     <input type="username" placeholder="Your username" onChange={this.handleUsernameChange} value={window.CS.getBMState().user.username} />
