@@ -15,6 +15,7 @@ export interface ISearchAction extends IAction {
 }
 
 reducerFunctions[ActionType.update_searchcategory] = function (newState: IState, action: ISearchAction) {
+    newState.UI.searchbar = "";
     newState.UI.searchcategory = action.searchcategory;
     return newState;
 }
