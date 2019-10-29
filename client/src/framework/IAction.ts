@@ -15,7 +15,9 @@ export enum ActionType {
     advertise_updated = "advertise_updated",
     add_comment = "add_comment",
     add_advertises_from_server = "add_advertises_from_server",
-    update_searchcategory= "update_searchcategory"
+    update_searchcategory= "update_searchcategory",
+    clear_searchcategory="clear_searchcategory",
+    update_searchbar= "update_searchbar"
 }
 export interface IAction {
     type: ActionType;

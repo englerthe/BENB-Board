@@ -38,6 +38,7 @@ reducerFunctions[ActionType.user_logged_out] = function (newState: IState, actio
 
 reducerFunctions[ActionType.update_searchcategory] = function (newState: IState, action: ISearchAction) {
     newState.UI.searchcategory = action.searchcategory;
+    newState.UI.searchbar = "";
     return newState;
 }    
 
