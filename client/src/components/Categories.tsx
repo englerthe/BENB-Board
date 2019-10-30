@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import { IAdvertiseData, IState } from '../state/appState';
+import { Link } from 'react-router-dom';
+import { IState } from '../state/appState';
 import { ActionType, IAction } from '../framework/IAction';
 import { reducerFunctions } from '../reducer/appReducer';
 import { IWindow } from '../framework/IWindow';
@@ -21,9 +21,9 @@ reducerFunctions[ActionType.update_searchcategory] = function (newState: IState,
 }
 
 export default class Categories extends Component {
-    constructor(props: IProps) {
-        super(props);
-    }
+    //constructor(props: IProps) {
+    //    super(props);
+    //}
     handleCategorySearch = (event: any) => {
         const action: ISearchAction = {
             type: ActionType.update_searchcategory,
