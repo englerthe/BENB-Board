@@ -9,6 +9,7 @@ export interface IUser {
 
 export interface ICommentData {
     _id?: string;
+    comment_advertise:string,
     comment_user: string;
     comment_text: string;
   }
@@ -81,8 +82,10 @@ export const initial:IState = {
         },
         advertises:[],
         comment:{
+            comment_advertise:"", 
             comment_user: "",
             comment_text: ""
         }
+
 	}
 };

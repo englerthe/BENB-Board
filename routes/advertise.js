@@ -1,6 +1,5 @@
 const express = require('express');
 const advertiseRoutes = express.Router();
-const commentRoutes = express.Router();
 
 
 let Advertise = require('../models/Advertise');
@@ -57,10 +56,11 @@ advertiseRoutes.route('/add').post(function (req, res) {
 
 // C: Create a new comment
 
-commentRoutes.route('/comment/add').post(function (req, res) {
+advertiseRoutes.route('/comment/add').post(function (req, res) {
     console.log("Request to save this Comment:" + JSON.stringify(req.body));
     let comment = new Comment(req.body);
-    console.log(comment)
+    console.log(req.body);
+    console.log("vdsgfdsgfsd",comment)
     comment.save()
         .then(comment => {
             res.status(200).json({ 'comment': 'comment added successfully' });

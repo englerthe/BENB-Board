@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 
 const commentSchema = new Schema({
   comment_advertise: {type: Schema.Types.ObjectId, ref: 'Advertise'},
-  comment_user: {type: Schema.Types.ObjectId, ref: 'User'},
+  comment_user: String, //{type: Schema.Types.ObjectId, ref: 'User'},
   comment_text: {type: String, maxlength: 400}
 }, {
     timestamps: {
