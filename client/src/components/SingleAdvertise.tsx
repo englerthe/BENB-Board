@@ -179,7 +179,7 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
                         <li className="price">Price: <br></br> <input size={50} type="text" name="price" value={this.props.advertise.advertise_price} onChange={this.handlePriceChange} /></li>
                         <li className="description">
                             <label htmlFor="description">Description: <br></br> </label>
-                            <textarea rows={5} cols={52} maxLength={300} name="description" value={this.props.advertise.advertise_description} onChange={this.handleDescriptionChange} ></textarea>
+                            <textarea rows={5} cols={52} maxLength={200} name="description" value={this.props.advertise.advertise_description} onChange={this.handleDescriptionChange} ></textarea>
                         </li>
                         {/*<li className="owner">Owner: <br></br> {this.props.advertise.advertise_owner}</li>*/}
                         <li className="city">City: <br></br> <input size={50} type="text" name="city" value={this.props.advertise.advertise_city} onChange={this.handleCityChange} /></li>
@@ -219,20 +219,19 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
                             <option value="tools">tools</option>
                             </select>
                         </li>
-                        {/*<li className="counter">Counter: <br></br> {this.props.advertise.advertise_counter}</li>*/}
                         <li className="buttonsArea">
                             <button onClick={this.handleSave} id={this.props.advertise._id}>save</button>
                         </li>
                     </ul>
                 </div>
             )
-        else if (window.CS.getUIState().loggedIn && locationProp.location.pathname === "/showadvertises") {
+        else if (window.CS.getUIState().loggedIn && locationProp.location.pathname === "/showadvertises") { 
             return (
 
                 <div className="wholeProduct">
                     <ul className="ulProduct">
                     <li className="title">{this.props.advertise.advertise_title}</li>
-                        <li><img className="picture" src={this.props.advertise.advertise_pictureUrl} alt="Picture" /></li>
+                        <li><img className="picture" src={this.props.advertise.advertise_pictureUrl} alt="Pic is missing" /></li>
                         <li className="price"><span className="priceName">Price:</span> <br></br> {this.props.advertise.advertise_price}</li>
                         <li className="description"><span className="descriptionName">Description:</span> <br></br> {this.props.advertise.advertise_description}</li>
                         <li className="owner"><span className="ownerName">Owner:</span> <br></br> {this.props.advertise.advertise_owner}</li>
@@ -242,11 +241,10 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
                         <li className="comment"><span className="commentName">Comment:</span> <br></br> {this.props.advertise.advertise_comment}</li>
                         <li className="message"><span className="messageName">Message:</span> <br></br> {this.props.advertise.advertise_message}</li>
                         <li className="category"><span className="categoryName">Category:</span> <br></br> {this.props.advertise.advertise_category}</li>
-                        <li className="counter"><span className="counterName">Counter:</span> <br></br> {this.props.advertise.advertise_counter}</li>
+                        {/*<li className="counter"><span className="counterName">Counter:</span> <br></br> {this.props.advertise.advertise_counter}</li>*/}
                         <li className="buttonsArea">
                             <button onClick={this.handleSwitchToEditMode}>edit</button>
-                            <button onClick={this.handleDelete} id={this.props.advertise._id}>sell or dispose</button>
-                            {/*<button onClick={this.handleRerenderTest} >increase State Counter {window.CS.getUIState().counter}</button>*/}
+                            <button onClick={this.handleDelete} id={this.props.advertise._id}>delete it</button>
                         </li>
                     </ul>
                 </div>
@@ -254,11 +252,10 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
         }
         else
             return (
-
                 <div className="wholeProduct">
                     <ul className="ulProduct">
                         <li className="title">{this.props.advertise.advertise_title}</li>
-                        <li><img className="picture" src={this.props.advertise.advertise_pictureUrl} alt="Picture" /></li>
+                        <li><img className="picture" src={this.props.advertise.advertise_pictureUrl} alt="Pic is missing" /></li>
                         <li className="price"><span className="priceName">Price:</span> <br></br> {this.props.advertise.advertise_price}</li>
                         <li className="description"><span className="descriptionName">Description:</span> <br></br> {this.props.advertise.advertise_description}</li>
                         <li className="owner"><span className="ownerName">Owner:</span> <br></br> {this.props.advertise.advertise_owner}</li>
@@ -268,7 +265,7 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
                         <li className="comment"><span className="commentName">Comment:</span> <br></br> {this.props.advertise.advertise_comment}</li>
                         <li className="message"><span className="messageName">Message:</span> <br></br> {this.props.advertise.advertise_message}</li>
                         <li className="category"><span className="categoryName">Category:</span> <br></br> {this.props.advertise.advertise_category}</li>
-                        <li className="counter"><span className="counterName">Counter:</span> <br></br> {this.props.advertise.advertise_counter}</li>
+                        {/*<li className="counter"><span className="counterName">Counter:</span> <br></br> {this.props.advertise.advertise_counter}</li>*/}
                     </ul>
                 </div>
             )

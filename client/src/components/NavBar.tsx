@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { IWindow } from '../framework/IWindow';
 import '../App.css';
 import { reducerFunctions } from '../reducer/appReducer';
 import { ActionType, IAction } from '../framework/IAction';
-import { IAdvertiseData, IState } from '../state/appState';
+import { IState } from '../state/appState';
 
-const logoName = require('../images/benb-logo.jpg')
+//const logoName = require('../images/benb-logo.jpg')
+
 declare let window: IWindow;
 
 interface IProps {
@@ -27,9 +28,9 @@ reducerFunctions[ActionType.update_searchbar] = function (newState: IState, acti
     return newState;
 }
 export default class nav extends Component {
-    constructor(props: IProps) {
-        super(props);
-    }
+    //constructor(props: IProps) {
+    //    super(props);
+    //}
 
     clearCategorySearch = (event: any) => {
         const action: ISearchCategoryAction = {

@@ -18,7 +18,7 @@ export interface IAdvertiseAction extends IAction {
   advertise: IAdvertiseData
 }
 reducerFunctions[ActionType.create_advertise] = function (newState: IState, action: IAdvertiseAction) {
-  newState.BM.advertises.push(action.advertise);
+  newState.BM.advertises.unshift(action.advertise);
   newState.UI.waitingForResponse = false;
   return newState;
 }
@@ -112,7 +112,7 @@ export default class ShowAllAdvertises extends Component<IProps, IJSXState> {
     else {
       /* no user ...*/ 
       if (window.CS.getUIState().searchcategory === "" && window.CS.getUIState().searchbar === "") {
-        {/* ... and no category and searchbar is selected  */ }
+        /* ... and no category and searchbar is selected  */
         return (
           <div>
             <div> {/* ==> show all advertises */}
@@ -153,7 +153,7 @@ export default class ShowAllAdvertises extends Component<IProps, IJSXState> {
       advertise_category: "---",
       advertise_price: "",
       advertise_owner: window.CS.getBMState().user.username.toString(),
-      advertise_pictureUrl: "",
+      advertise_pictureUrl: "https://res.cloudinary.com/benb-board/image/upload/v1572432933/benb-board/sale_buijkf.jpg",
       advertise_counter: 0,
       advertise_status: "available",
       advertise_city: "",
