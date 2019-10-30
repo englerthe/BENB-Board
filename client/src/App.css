@@ -261,15 +261,20 @@ nav li a:hover {
   box-shadow: 5px 5px 5px rgb(48, 48, 48);
   color: white;
   float: left;
-  height: 1000px;
-  width: 500px;
-  margin: 25px 10px 25px 10px;
-  padding-left: 25px;
+  min-height: 500px;
+  max-height: 1000px;
+  min-width: 200px;
+  max-width: 450px;
+  margin: 25px 10px 15px 10px;
+  padding-left: 5px;
+  padding-right:5px;
   text-align: left;
 }
 
 .ulProduct {
   list-style: none;
+  padding: 10px;
+  margin:0px;
 }
 
 .title {
@@ -286,17 +291,17 @@ nav li a:hover {
 }
 
 .titleName, .type, .description, .category, .price, .owner, .comment, .counter, .status, .message, .city {
-  padding-bottom: 10px;
+  padding-bottom: 5px;
 }
 
 .picture {
-  height: 250px;
-  width: 250px;
-  padding: 10px 0 10px 0;
+  max-height: 250px;
+  max-width: 250px;
+  /*padding: 10px 0 10px 0;*/
   border: 1px solid black;
   background-size: cover;
   box-shadow: 5px 5px 5px rgb(48, 48, 48);
-  margin-bottom: 15px;
+  margin-bottom:10px;
 }
 
 .offerOrange {
@@ -322,6 +327,6 @@ nav li a:hover {
 /*----------------------------------- ShowAllAdvertises -----------------------------------*/
 .textFromWholeProduct {
   color: black;
-  margin: 25px 10px 25px 0px;
-  padding-left: 25px;
+  margin: 15px 10px 15px 0px;
+  padding-left: 15px;
 }
