@@ -7,7 +7,6 @@ let app = require('../app');
 // catch 404
 app.use((req, res) => {
   res.status(404);
-  res.render('not-found');
 });
 
 app.use((err, req, res) => {
