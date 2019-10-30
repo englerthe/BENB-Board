@@ -30,9 +30,13 @@ export default class ShowAllAdvertises extends Component<IProps, IJSXState> {
   }
   render() {
     let locationProp = this.props as any;
-    //render for categories)
-    console.log("advertises", window.CS.getBMState().advertises);
+    // sort from new to old
+    window.CS.getBMState().advertises && // if advertises are available ...
+    window.CS.getBMState().advertises.sort((a: any,b : any) => Date.parse(b.created_at) - Date.parse(a.created_at));
+    
+    //render for categories
     const renderCategories = window.CS.getBMState().advertises.filter((item: any) => item.advertise_category === window.CS.getUIState().searchcategory);
+    
     //render for searchbar)
     let searchStr = window.CS.getUIState().searchbar.toLowerCase();
     let renderSearchbar = [];
@@ -41,13 +45,14 @@ export default class ShowAllAdvertises extends Component<IProps, IJSXState> {
           renderSearchbar.push(window.CS.getBMState().advertises[i]);
         }
     }
-    //render for own advertises)
+    //render for own advertises
     const renderOwnAdds = locationProp.location.pathname === "/showadvertises"
       ?
       window.CS.getBMState().advertises.filter((item: any) => item.advertise_owner === window.CS.getBMState().user.username)
       :
       window.CS.getBMState().advertises;
     //
+
     if (window.CS.getUIState().loggedIn) { //if user is logged in ...
       if (window.CS.getUIState().searchcategory === "" && window.CS.getUIState().searchbar === "") { // ...and no category and search is selected
         return (
@@ -67,7 +72,7 @@ export default class ShowAllAdvertises extends Component<IProps, IJSXState> {
           </div>
         )
       } else if (window.CS.getUIState().searchbar === "") {
-        {/* category is selected, no searchbar */ }
+        /* category is selected, no searchbar */ 
         return (
           <div>
             {
@@ -85,7 +90,7 @@ export default class ShowAllAdvertises extends Component<IProps, IJSXState> {
           </div>
         )
       } else {
-        {/* category is selected but also searchbar */ }
+        /* category is selected but also searchbar */
         return (
         <div>
           {
@@ -105,7 +110,7 @@ export default class ShowAllAdvertises extends Component<IProps, IJSXState> {
       }
     }
     else {
-      {/* no user ...*/ }
+      /* no user ...*/ 
       if (window.CS.getUIState().searchcategory === "" && window.CS.getUIState().searchbar === "") {
         {/* ... and no category and searchbar is selected  */ }
         return (
@@ -116,7 +121,7 @@ export default class ShowAllAdvertises extends Component<IProps, IJSXState> {
           </div>
         )
       } else if (window.CS.getUIState().searchbar === "") {
-        {/* category is selected but no search*/ }
+        /* category is selected but no search*/ 
         return (
           <div>
             <div> {/* ==> show all adds from selected category */}
@@ -151,7 +156,7 @@ export default class ShowAllAdvertises extends Component<IProps, IJSXState> {
       advertise_pictureUrl: "",
       advertise_counter: 0,
       advertise_status: "available",
-      advertise_city: ""
+      advertise_city: "",
     }
     const action: IAdvertiseAction = {
       type: ActionType.create_advertise,

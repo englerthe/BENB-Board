@@ -53,6 +53,12 @@ export default class nav extends Component {
         }
         window.CS.clientAction(action);
     }
+    clearUser = (event: any) => {
+        const loggedoutAction: IAction = {
+            type: ActionType.user_logged_out
+        }
+        window.CS.clientAction(loggedoutAction);
+    }
 
     render() {
         if (window.CS.getUIState().loggedIn) {
@@ -93,8 +99,8 @@ export default class nav extends Component {
                                     <button className="NavBarSearchButton" onClick={this.clearSearch}>Clear Searchfield</button>
                                 </NavLink>
                             </div>
-                            <li><NavLink to="/register">Join us</NavLink></li>
-                            <li><NavLink to="/login">Login</NavLink></li>
+                            <li><NavLink to="/register" onClick={this.clearUser}>Join us</NavLink></li>
+                            <li><NavLink to="/login" onClick={this.clearUser}>Login</NavLink></li>
                         </ul>
                     </div>
                 </nav>
