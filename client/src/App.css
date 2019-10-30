@@ -330,3 +330,8 @@ nav li a:hover {
   margin: 15px 10px 15px 0px;
   padding-left: 15px;
 }
+
+.render_showadvertises {
+  display:flex;
+  flex-wrap:wrap;
+}
