@@ -241,7 +241,6 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
                         <li className="comment"><span className="commentName">Comment:</span> <br></br> {this.props.advertise.advertise_comment}</li>
                         <li className="message"><span className="messageName">Message:</span> <br></br> {this.props.advertise.advertise_message}</li>
                         <li className="category"><span className="categoryName">Category:</span> <br></br> {this.props.advertise.advertise_category}</li>
-                        {/*<li className="counter"><span className="counterName">Counter:</span> <br></br> {this.props.advertise.advertise_counter}</li>*/}
                         <li className="buttonsArea">
                             <button onClick={this.handleSwitchToEditMode}>edit</button>
                             <button onClick={this.handleDelete} id={this.props.advertise._id}>delete it</button>
@@ -265,7 +264,6 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
                         <li className="comment"><span className="commentName">Comment:</span> <br></br> {this.props.advertise.advertise_comment}</li>
                         <li className="message"><span className="messageName">Message:</span> <br></br> {this.props.advertise.advertise_message}</li>
                         <li className="category"><span className="categoryName">Category:</span> <br></br> {this.props.advertise.advertise_category}</li>
-                        {/*<li className="counter"><span className="counterName">Counter:</span> <br></br> {this.props.advertise.advertise_counter}</li>*/}
                     </ul>
                 </div>
             )
