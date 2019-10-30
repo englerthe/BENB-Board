@@ -1,4 +1,4 @@
-/*------------------------------ containers ------------------------------*/
+/*----------------------------------- containers -----------------------------------*/
 .container-body {
   margin: 0px;
   display: flex;
@@ -36,7 +36,7 @@
   border-bottom: 1px solid yellow;
 }
 
-/*------------------------------ navbar ------------------------------*/
+/*----------------------------------- navbar -----------------------------------*/
 
 .TitleBar {
   text-align: center;
@@ -55,6 +55,10 @@ nav ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
+}
+
+.border {
+  border-top: 10px solid blue;
 }
 
 nav li {
@@ -100,7 +104,7 @@ nav li a:hover {
   text-decoration: underline;
 }
 
-/*------------------------------ categories ------------------------------*/
+/*----------------------------------- categories -----------------------------------*/
 
 .categories h3{
   color: white;
@@ -131,7 +135,7 @@ nav li a:hover {
   text-decoration: underline;
 }
 
-/*------------------------------ Login ------------------------------*/
+/*----------------------------------- Login -----------------------------------*/
 .loginFormDiv {
   color: white;
   padding: 5px;
@@ -162,7 +166,7 @@ nav li a:hover {
   height: 25px;
 }
 
-/*------------------------------ Logout ------------------------------*/ 
+/*----------------------------------- Logout -----------------------------------*/ 
 
 .wholeLogout {
   color: white;
@@ -178,7 +182,7 @@ nav li a:hover {
   height: 25px;
 }
 
-/*------------------------------ Register ------------------------------*/
+/*----------------------------------- Register -----------------------------------*/
 
 .registerFormDiv {
   color: black;
@@ -233,7 +237,7 @@ nav li a:hover {
   height: 25px;
 }
 
-/*------------------------------ footer ------------------------------*/
+/*----------------------------------- footer -----------------------------------*/
 .footer img {
   width: 30px;
   height: 30px;
@@ -248,7 +252,7 @@ nav li a:hover {
   background-color: #333;
 }
 
-/*------------------------------ SingleAdvertise ------------------------------*/
+/*----------------------------------- SingleAdvertise -----------------------------------*/
 .wholeProduct {
   background-color: rgb(151, 149, 149);
   display: flex;
@@ -276,7 +280,12 @@ nav li a:hover {
   font-weight: bold;
 }
 
-.titleName {
+.typeName, .descriptionName, .categoryName, .priceName, .ownerName, .commentName, .counterName, .statusName, .messageName, .cityName {
+  color: black;
+  font-weight: bold;
+}
+
+.titleName, .type, .description, .category, .price, .owner, .comment, .counter, .status, .message, .city {
   padding-bottom: 10px;
 }
 
@@ -290,88 +299,12 @@ nav li a:hover {
   margin-bottom: 15px;
 }
 
-.type {
-  padding-bottom: 10px;
-}
-
-.typeName {
-  color: black;
-  font-weight: bold;
-}
-
 .offerOrange {
   color: orange;
 }
 
 .searchBlue {
   color: blue;
-}
-
-.description {
-  padding-bottom: 10px;
-}
-
-.descriptionName {
-  color: black;
-  font-weight: bold;
-}
-
-.category {
-  padding-bottom: 10px;
-}
-
-.categoryName {
-  color: black;
-  font-weight: bold;
-}
-
-.selectBox {
-  width: 385px;
-}
-
-.price {
-  padding-bottom: 10px;
-}
-
-.priceName {
-  color: black;
-  font-weight: bold;
-}
-
-.owner {
-  padding-bottom: 10px;
-}
-
-.ownerName {
-  color: black;
-  font-weight: bold;
-}
-
-.comment {
-  padding-bottom: 10px;
-}
-
-.commentName {
-  color: black;
-  font-weight: bold;
-}
-
-.counter {
-  padding-bottom: 10px;
-}
-
-.counterName {
-  color: black;
-  font-weight: bold;
-}
-
-.status {
-  padding-bottom: 10px;
-}
-
-.statusName {
-  color: black;
-  font-weight: bold;
 }
 
 .availableGreen {
@@ -382,25 +315,11 @@ nav li a:hover {
   color: red;
 }
 
-.message {
-  padding-bottom: 10px;
+.selectBox {
+  width: 385px;
 }
 
-.messageName {
-  color: black;
-  font-weight: bold;
-}
-
-.city {
-  padding-bottom: 10px;
-}
-
-.cityName {
-  color: black;
-  font-weight: bold;
-}
-
-/*------------------------------ ShowAllAdvertises ------------------------------*/
+/*----------------------------------- ShowAllAdvertises -----------------------------------*/
 .textFromWholeProduct {
   color: black;
   margin: 25px 10px 25px 0px;
