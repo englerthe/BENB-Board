@@ -286,15 +286,12 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
               <option value="mobile phone & equipment">mobile phone & equipment</option>
               <option value="pet needs">pet needs</option>
               <option value="hobby & leisure">hobby & leisure</option>
-              <option value="property">property</option>
-              <option value="jobs & services">jobs & services</option>
               <option value="clothes & fashion">clothes & fashion</option>
               <option value="furniture, housing & household">furniture, housing & household</option>
               <option value="jewelry & accessories">jewelry & accessories</option>
               <option value="games & consoles">games & consoles</option>
               <option value="sports, travel & outdoor">sports, travel & outdoor</option>
               <option value="tickets & events">tickets & events</option>
-              <option value="moving & help">moving & help</option>
               <option value="tools">tools</option>
             </select>
             </li>
@@ -326,7 +323,7 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
           </ul>
         </div>
       );
-    } else if (window.CS.getUIState().loggedIn && window.CS.getBMState().user.username === this.props.advertise.advertise_owner){
+    } /*else if (window.CS.getUIState().loggedIn && window.CS.getBMState().user.username === this.props.advertise.advertise_owner){
       return (
         <div className="wholeProduct">
           <ul className="ulProduct">
@@ -344,14 +341,14 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
                   comment.comment_advertise === this.props.advertise._id
               )
               .map(comment => (
-                <span>from {comment.comment_user}:{" "}{comment.comment_text}<br></br></span>
+                <span><span className="commentFrom">from {comment.comment_user}:</span>{" "}{comment.comment_text}<br></br></span>
               ))}</li>
             <li className="category"><span className="categoryName">Category:</span> <br></br>{" "}{this.props.advertise.advertise_category}</li>
           </ul>
           
         </div> 
       );
-    } else if (window.CS.getUIState().loggedIn) {
+    }*/ else if (window.CS.getUIState().loggedIn) {
       return (
         <div className="wholeProduct">
           <ul className="ulProduct">
@@ -369,7 +366,7 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
                   comment.comment_advertise === this.props.advertise._id
               )
               .map(comment => (
-                <span>from {comment.comment_user}:{" "}{comment.comment_text}<br></br></span>
+                <span><span className="commentFrom">from {comment.comment_user}:</span>{" "}{comment.comment_text}<br></br></span>
               ))}</li>
             <li className="category"><span className="categoryName">Category:</span> <br></br>{" "}{this.props.advertise.advertise_category}</li>
           </ul>
@@ -409,7 +406,7 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
                   comment.comment_advertise === this.props.advertise._id
               )
               .map(comment => (
-                <span>from {comment.comment_user}:{" "}{comment.comment_text}<br></br></span>
+                <span><span className="commentFrom">from {comment.comment_user}:</span>{" "}{comment.comment_text}<br></br></span>
               ))}</li>
             <li className="category"><span className="categoryName">Category:</span> <br></br>{" "}{this.props.advertise.advertise_category}</li>
           </ul>

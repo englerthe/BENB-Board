@@ -382,3 +382,8 @@ nav li a:focus {
   height: 20px;
   background-color: white;
 }
+
+.commentFrom {
+  color: #333;
+  text-decoration: underline;
+}
