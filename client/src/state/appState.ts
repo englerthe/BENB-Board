@@ -1,24 +1,17 @@
 export interface IUser {
     _id?: string;
-    firstname:string;
-    lastname:string;
-    username:string;
-    password:string;
+    firstname: string;
+    lastname: string;
+    username: string;
+    password: string;
     email: string;
 }
 
-export interface ICommentData {
-    _id?: string;
-    comment_advertise:string,
-    comment_user: string;
-    comment_text: string;
-  }
-
-export interface ILogin{
-    errorMessage:string;
+export interface ILogin {
+    errorMessage: string;
 }
-export interface IRegister{
-    errorMessage:string;
+export interface IRegister {
+    errorMessage: string;
 }
 
 export interface IUI {
@@ -45,47 +38,47 @@ export interface IAdvertiseData {
     advertise_status: string;
     advertise_message?: string;
     advertise_city: string;
-  }
+}
+export interface ICommentData {
+    _id?: string;
+    comment_advertise: string,
+    comment_user: string;
+    comment_text: string;
+}
 
-
-
-export interface IBM{
-    user:IUser;
-    advertises:IAdvertiseData[];
-    comment: ICommentData;
+export interface IBM {
+    user: IUser;
+    advertises: IAdvertiseData[];
+    comments: ICommentData[];
 }
 
 
-export interface IState{
-    UI:IUI;
-    BM:IBM;
+export interface IState {
+    UI: IUI;
+    BM: IBM;
 }
 
 // initial state 
-export const initial:IState = {
-	UI: {
-		counter: 0,
-		loggedIn: false,
+export const initial: IState = {
+    UI: {
+        counter: 0,
+        loggedIn: false,
         waitingForResponse: false,
-        Login: {errorMessage:""},
-        Register: {errorMessage:""},
-        searchbar:"",
+        Login: { errorMessage: "" },
+        Register: { errorMessage: "" },
+        searchbar: "",
         searchcategory: ""
     },
-	BM: {
-        user:{
-            firstname:"",
-            lastname:"",
-            username:"",
-            password:"",
+    BM: {
+        user: {
+            firstname: "",
+            lastname: "",
+            username: "",
+            password: "",
             email: ""
         },
-        advertises:[],
-        comment:{
-            comment_advertise:"", 
-            comment_user: "",
-            comment_text: ""
-        }
+        advertises: [],
+        comments: [],
 
-	}
+    }
 };

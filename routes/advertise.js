@@ -24,11 +24,22 @@ let Comment = require('../models/Comment');
         })
         .catch(error => console.log(error));
       });
-   */   
+   */
 
 //Homepage
-advertiseRoutes.route('/read').get(function (req, res) {
+advertiseRoutes.route('/read').get(function (req, res, next) {
     console.log("got a request");
+    Promise.all([
+        Advertise.find(),
+        Comment.find()
+    ])
+        .then(
+            data => {
+                res.status(200).json(data);
+                console.log("ads",data);
+            }
+        ).catch(next)
+    /*
     Advertise.find(function (err, advertises) {
         if (err) {
             console.log(err);
@@ -36,6 +47,14 @@ advertiseRoutes.route('/read').get(function (req, res) {
             res.json(advertises);
         }
     });
+    Comment.find(function (err, comments) {
+        if (err) {
+            console.log(err);
+        } else {
+            
+            res.json(comments);
+        }
+    });*/
 });
 
 
@@ -60,7 +79,6 @@ advertiseRoutes.route('/comment/add').post(function (req, res) {
     console.log("Request to save this Comment:" + JSON.stringify(req.body));
     let comment = new Comment(req.body);
     console.log(req.body);
-    console.log("vdsgfdsgfsd",comment)
     comment.save()
         .then(comment => {
             res.status(200).json({ 'comment': 'comment added successfully' });

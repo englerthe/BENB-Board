@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import SingleAdvertise from './SingleAdvertise'
 import mongoose from 'mongoose';
 import { IAction, ActionType } from '../framework/IAction';
-import { IAdvertiseData, IState } from '../state/appState'
+import { IAdvertiseData, IState, ICommentData } from '../state/appState'
 import axios from 'axios';
 import { reducerFunctions } from '../reducer/appReducer';
 import '../App.css';
@@ -11,7 +11,8 @@ import { IWindow } from '../framework/IWindow'
 declare let window: IWindow;
 
 interface IProps {
-  user?: boolean
+  user?: boolean;
+  comment: ICommentData;
 };
 interface IJSXState { };
 export interface IAdvertiseAction extends IAction {
