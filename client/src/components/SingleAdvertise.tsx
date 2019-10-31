@@ -71,7 +71,6 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
         comment_text: ""
       }
     };
-    console.log("state",window.CS.getBMState().comments);
   }
   
   handleSwitchToEditMode = () => {
@@ -212,14 +211,12 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
 
   handleCreateComment = (e: any) => {
     e.preventDefault();
-    console.log("handleCreateComment invoked");
     const uiAction: IAction = {
       type: ActionType.server_called
     }
     window.CS.clientAction(uiAction);
     axios.post('/advertises/comment/add', this.state.comment)
       .then(res => {
-        console.log(res.data);
         history.push("/");
         this.setState({
           comment: {
@@ -229,7 +226,7 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
         })
       });
   }
-
+   
   
   render() {
     let locationProp = this.props as any;
@@ -305,12 +302,12 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
           <ul className="ulProduct">
             <li className="title">{this.props.advertise.advertise_title}</li>
             <li><img className="picture" src={this.props.advertise.advertise_pictureUrl} alt="no pic available" /></li>
-            <li className="price"><span className="priceName">Price:</span> <br></br>{" "}{this.props.advertise.advertise_price}</li>
+            <li className="price"><span className="priceName">Price:</span>{" "}{this.props.advertise.advertise_price}</li>
             <li className="description"><span className="descriptionName">Description:</span> <br></br>{" "}{this.props.advertise.advertise_description}</li>
-            <li className="owner"><span className="ownerName">Owner:</span> <br></br>{" "}{this.props.advertise.advertise_owner}</li>
-            <li className="city"><span className="cityName">City:</span> <br></br>{" "}{this.props.advertise.advertise_city}</li>
-            <li className="type"><span className="typeName">Type:</span> <br></br>{" "}{this.props.advertise.advertise_type}</li>
-            <li className="status"><span className="statusName">Status:</span> <br></br>{" "}{this.props.advertise.advertise_status}{" "}</li>
+            <li className="owner"><span className="ownerName">Owner:</span>{" "}{this.props.advertise.advertise_owner}</li>
+            <li className="city"><span className="cityName">City:</span>{" "}{this.props.advertise.advertise_city}</li>
+            <li className="type"><span className="typeName">Type:</span>{" "}{this.props.advertise.advertise_type}</li>
+            <li className="status"><span className="statusName">Status:</span>{" "}<span id={this.props.advertise.advertise_status}>{this.props.advertise.advertise_status}</span></li>
             <li className="comment"><span className="commentName">Comment:</span> <br></br>{" "}{this.props.advertise.advertise_comment}</li>
             <li className="message"><span className="messageName">Message:</span> <br></br>{" "}{this.props.advertise.advertise_message}</li>
             <li className="category"><span className="categoryName">Category:</span> <br></br>{" "}{this.props.advertise.advertise_category}</li>
@@ -329,12 +326,12 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
           <ul className="ulProduct">
             <li className="title">{this.props.advertise.advertise_title}</li>
             <li><img className="picture" src={this.props.advertise.advertise_pictureUrl} alt="no pic available" /></li>
-            <li className="price"><span className="priceName">Price:</span> <br></br>{" "}{this.props.advertise.advertise_price}</li>
+            <li className="price"><span className="priceName">Price:</span>{" "}{this.props.advertise.advertise_price}</li>
             <li className="description"><span className="descriptionName">Description:</span> <br></br>{" "}{this.props.advertise.advertise_description}</li>
-            <li className="owner"><span className="ownerName">Owner:</span> <br></br>{" "}{this.props.advertise.advertise_owner}</li>
-            <li className="city"><span className="cityName">City:</span> <br></br>{" "}{this.props.advertise.advertise_city}</li>
-            <li className="type"><span className="typeName">Type:</span> <br></br>{" "}{this.props.advertise.advertise_type}</li>
-            <li className="status"><span className="statusName">Status:</span> <br></br>{" "}{this.props.advertise.advertise_status}</li>
+            <li className="owner"><span className="ownerName">Owner:</span>{" "}{this.props.advertise.advertise_owner}</li>
+            <li className="city"><span className="cityName">City:</span>{" "}{this.props.advertise.advertise_city}</li>
+            <li className="type"><span className="typeName">Type:</span>{" "}{this.props.advertise.advertise_type}</li>
+            <li className="status"><span className="statusName">Status:</span>{" "}<span id={this.props.advertise.advertise_status}>{this.props.advertise.advertise_status}</span></li>
             <li className="comment"><span className="commentName">Comment:</span> <br></br>{" "}{this.props.advertise.advertise_comment}</li>
             <li className="message"><span className="messageName">Message:</span> <br></br>{" "}{this.props.advertise.advertise_message}</li>
             <li className="category"><span className="categoryName">Category:</span> <br></br>{" "}{this.props.advertise.advertise_category}</li>
@@ -364,12 +361,12 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
           <ul className="ulProduct">
             <li className="title">{this.props.advertise.advertise_title}</li>
             <li><img className="picture" src={this.props.advertise.advertise_pictureUrl} alt="no pic available" /></li>
-            <li className="price"><span className="priceName">Price:</span> <br></br>{" "}{this.props.advertise.advertise_price}</li>
+            <li className="price"><span className="priceName">Price:</span>{" "}{this.props.advertise.advertise_price}</li>
             <li className="description"><span className="descriptionName">Description:</span> <br></br>{" "}{this.props.advertise.advertise_description}</li>
-            <li className="owner"><span className="ownerName">Owner:</span> <br></br>{" "}{this.props.advertise.advertise_owner}</li>
-            <li className="city"><span className="cityName">City:</span> <br></br>{" "}{this.props.advertise.advertise_city}</li>
-            <li className="type"><span className="typeName">Type:</span> <br></br>{" "}{this.props.advertise.advertise_type}</li>
-            <li className="status"><span className="statusName">Status:</span> <br></br>{" "}{this.props.advertise.advertise_status}</li>
+            <li className="owner"><span className="ownerName">Owner:</span>{" "}{this.props.advertise.advertise_owner}</li>
+            <li className="city"><span className="cityName">City:</span>{" "}{this.props.advertise.advertise_city}</li>
+            <li className="type"><span className="typeName">Type:</span>{" "}{this.props.advertise.advertise_type}</li>
+            <li className="status"><span className="statusName">Status:</span>{" "}<span id={this.props.advertise.advertise_status}>{this.props.advertise.advertise_status}</span></li>
             <li className="comment"><span className="commentName">Comment:</span> <br></br>{" "}{this.props.advertise.advertise_comment}</li>
             <li className="message"><span className="messageName">Message:</span> <br></br>{" "}{this.props.advertise.advertise_message}</li>
             <li className="category"><span className="categoryName">Category:</span> <br></br>{" "}{this.props.advertise.advertise_category}</li>
