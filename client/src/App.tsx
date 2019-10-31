@@ -6,7 +6,7 @@ import Register from './components/Register';
 import ShowAllAdvertises from './components/ShowAllAdvertises';
 import { Switch, Route } from 'react-router-dom';
 import { IAction, ActionType } from './framework/IAction';
-import { IAdvertiseData, IState } from './state/appState'
+import { IAdvertiseData, IState, ICommentData } from './state/appState'
 import axios from 'axios';
 import { reducerFunctions } from './reducer/appReducer';
 import './App.css';
@@ -21,7 +21,8 @@ interface IProps {
 }
 
 export interface IAdvertisesLoadedAction extends IAction {
-  advertises: IAdvertiseData[]
+  advertises: IAdvertiseData[];
+  comments: ICommentData[];
 }
 reducerFunctions[ActionType.server_called] = function (newState: IState, action: IAction) {
   newState.UI.waitingForResponse = true;
@@ -30,6 +31,7 @@ reducerFunctions[ActionType.server_called] = function (newState: IState, action:
 reducerFunctions[ActionType.add_advertises_from_server] = function (newState: IState, action: IAdvertisesLoadedAction) {
   newState.UI.waitingForResponse = false;
   newState.BM.advertises = action.advertises;
+  newState.BM.comments = action.comments;
   return newState;
 }
 export default class App extends React.PureComponent<IProps> {
@@ -40,9 +42,11 @@ export default class App extends React.PureComponent<IProps> {
     }
     window.CS.clientAction(uiAction);
     axios.get('/advertises/read').then(response => {
+      console.log("resp:",response.data);
       const responseAction: IAdvertisesLoadedAction = {
         type: ActionType.add_advertises_from_server,
-        advertises: response.data as IAdvertiseData[]
+        advertises: response.data[0] as IAdvertiseData[],
+        comments: response.data[1] as ICommentData[]
       }
       window.CS.clientAction(responseAction);
     }).catch(function (error) { console.log(error); })
