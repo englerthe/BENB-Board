@@ -63,7 +63,7 @@ export default class ShowAllAdvertises extends Component<IProps, IJSXState> {
               <>
                 <h1 className="textFromWholeProduct">show all own advertises</h1>
                 <p className="textFromWholeProduct">to create a new advertise click this button:&nbsp;
-                <button onClick={this.handleCreateAdvertise}>create advertise</button>
+                <button className="createAdvertiseButton" onClick={this.handleCreateAdvertise}>create advertise</button>
                 </p>
               </>
             } {/* ==> show all advertises from logged-in-user */}
