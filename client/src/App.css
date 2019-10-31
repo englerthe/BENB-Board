@@ -323,14 +323,19 @@ nav li a:focus {
   color: blue;
 }
 
-.availableGreen {
+.availableGreen{
+  color: greenyellow;
+}
+#available {
   color: greenyellow;
 }
 
 .soldRed {
   color: red;
 }
-
+#sold {
+  color: red;
+}
 .selectBox {
   width: 385px;
 }
