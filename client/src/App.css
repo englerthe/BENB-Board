@@ -87,6 +87,9 @@ nav li {
 .NavBarSearchButton:hover {
   cursor: pointer;
 }
+nav input:focus {
+  background-color: rgb(255, 255, 190);
+}
 
 nav li a {
   display: block;
@@ -102,6 +105,10 @@ nav li a:hover {
   background-color: #555;
   border-radius: 5px;
   text-decoration: underline;
+}
+
+nav li a:focus {
+  background-color: #555;
 }
 
 /*----------------------------------- categories -----------------------------------*/
@@ -133,6 +140,10 @@ nav li a:hover {
 
 .categories li a:hover {
   text-decoration: underline;
+}
+
+.categories li a:focus {
+  color: yellow;
 }
 
 /*----------------------------------- Login -----------------------------------*/
@@ -329,4 +340,13 @@ nav li a:hover {
   color: black;
   margin: 15px 10px 15px 0px;
   padding-left: 15px;
+}
+
+.render_showadvertises {
+  display:flex;
+  flex-wrap:wrap;
+}
+.categoryTitle {
+  text-align: center;
+  margin: 5px 0 0;
 }

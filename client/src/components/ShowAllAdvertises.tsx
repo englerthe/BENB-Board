@@ -66,7 +66,7 @@ export default class ShowAllAdvertises extends Component<IProps, IJSXState> {
                 </p>
               </>
             } {/* ==> show all advertises from logged-in-user */}
-            <div>
+            <div className="render_showadvertises">
               {renderOwnAdds.map(advertise => <SingleAdvertise key={advertise._id} {...this.props} advertise={advertise} edit={false} />)}
             </div>
           </div>
@@ -84,7 +84,8 @@ export default class ShowAllAdvertises extends Component<IProps, IJSXState> {
                 </p>
               </>
             }
-            <div> {/* ==> show all adds from selected category */}
+            <h3 className="categoryTitle">{window.CS.getUIState().searchcategory}</h3>
+            <div className="render_showadvertises"> {/* ==> show all adds from selected category */}
               {renderCategories.map(advertise => <SingleAdvertise key={advertise._id} {...this.props} advertise={advertise} edit={false} />)}
             </div>
           </div>
@@ -102,7 +103,8 @@ export default class ShowAllAdvertises extends Component<IProps, IJSXState> {
               </p>
             </>
           }
-          <div> {/* ==> show all adds from search */}
+          <h3 className="categoryTitle">your search: {window.CS.getUIState().searchbar}</h3>
+          <div className="render_showadvertises"> {/* ==> show all adds from search */}
             {renderSearchbar.map(advertise => <SingleAdvertise key={advertise._id} {...this.props} advertise={advertise} edit={false} />)}
           </div>
         </div>
@@ -115,7 +117,8 @@ export default class ShowAllAdvertises extends Component<IProps, IJSXState> {
         /* ... and no category and searchbar is selected  */
         return (
           <div>
-            <div> {/* ==> show all advertises */}
+            <h3 className="categoryTitle">All advertises ordered by date</h3>
+            <div className="render_showadvertises"> {/* ==> show all advertises */}
               {window.CS.getBMState().advertises.map(advertise => <SingleAdvertise key={advertise._id} {...this.props} advertise={advertise} edit={false} />)}
             </div>
           </div>
@@ -124,7 +127,8 @@ export default class ShowAllAdvertises extends Component<IProps, IJSXState> {
         /* category is selected but no search*/ 
         return (
           <div>
-            <div> {/* ==> show all adds from selected category */}
+            <h3 className="categoryTitle">{window.CS.getUIState().searchcategory}</h3>
+            <div className="render_showadvertises"> {/* ==> show all adds from selected category */}
               {renderCategories.map(advertise => <SingleAdvertise key={advertise._id} {...this.props} advertise={advertise} edit={false} />)}
             </div>
           </div>
@@ -132,7 +136,8 @@ export default class ShowAllAdvertises extends Component<IProps, IJSXState> {
       } else {
         return (
         <div>
-          <div> {/* ==> show all adds from search */}
+          <h3 className="categoryTitle">your search: {window.CS.getUIState().searchbar}</h3>
+          <div className="render_showadvertises"> {/* ==> show all adds from search */}
             {renderSearchbar.map(advertise => <SingleAdvertise key={advertise._id} {...this.props} advertise={advertise} edit={false} />)}
           </div>
         </div>
