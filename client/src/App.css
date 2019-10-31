@@ -350,3 +350,30 @@ nav li a:focus {
   text-align: center;
   margin: 5px 0 0;
 }
+
+/*----------------------------------- else -----------------------------------*/
+.commentButton, .createAdvertiseButton {
+  align-items: center;
+  width: 120px;
+  height: 25px;
+}
+
+.saveButtonInEditMode {
+  align-items: center;
+  width: 80px;
+  height: 25px;
+}
+
+.editButton, .deleteButton {
+  align-items: center;
+  width: 80px;
+  height: 25px;
+}
+
+.commentField input[type=text] {
+  padding-left: 10px;
+  margin: 10px;
+  width: 200px;
+  height: 20px;
+  background-color: white;
+}

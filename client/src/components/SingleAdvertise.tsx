@@ -292,7 +292,7 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
             </li>
             {/*<li className="counter">Counter: <br></br> {this.props.advertise.advertise_counter}</li>*/}
             <li className="buttonsArea">
-              <button onClick={this.handleSave} id={this.props.advertise._id}>save</button>
+              <button className="saveButtonInEditMode" onClick={this.handleSave} id={this.props.advertise._id}>save</button>
             </li>
           </ul>
         </div>
@@ -312,12 +312,10 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
             <li className="type"><span className="typeName">Type:</span> <br></br>{" "}{this.props.advertise.advertise_type}</li>
             <li className="status"><span className="statusName">Status:</span> <br></br>{" "}{this.props.advertise.advertise_status}{" "}</li>
             <li className="comment"><span className="commentName">Comment:</span> <br></br>{" "}{this.props.advertise.advertise_comment}</li>
-            <li className="message"><span className="messageName">Message:</span> <br></br>{" "}{this.props.advertise.advertise_message}</li>
             <li className="category"><span className="categoryName">Category:</span> <br></br>{" "}{this.props.advertise.advertise_category}</li>
-            <li className="counter"><span className="counterName">Counter:</span> <br></br>{" "}{this.props.advertise.advertise_counter}</li>
             <li className="buttonsArea">
-              <button onClick={this.handleSwitchToEditMode}>edit</button>
-              <button onClick={this.handleDelete} id={this.props.advertise._id}>delete it</button>
+              <button className="editButton" onClick={this.handleSwitchToEditMode}>edit</button>
+              <button className="deleteButton" onClick={this.handleDelete} id={this.props.advertise._id}>delete it</button>
               {/*<button onClick={this.handleRerenderTest} >increase State Counter {window.CS.getUIState().counter}</button>*/}
             </li>
           </ul>
@@ -336,21 +334,19 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
             <li className="type"><span className="typeName">Type:</span> <br></br>{" "}{this.props.advertise.advertise_type}</li>
             <li className="status"><span className="statusName">Status:</span> <br></br>{" "}{this.props.advertise.advertise_status}</li>
             <li className="comment"><span className="commentName">Comment:</span> <br></br>{" "}{this.props.advertise.advertise_comment}</li>
-            <li className="message"><span className="messageName">Message:</span> <br></br>{" "}{this.props.advertise.advertise_message}</li>
             <li className="category"><span className="categoryName">Category:</span> <br></br>{" "}{this.props.advertise.advertise_category}</li>
-            <li className="counter"><span className="counterName">Counter:</span> <br></br>{" "}{this.props.advertise.advertise_counter}</li>
           </ul>
           <ul>
             <li>
               <div>
-                <form onSubmit={this.handleCreateComment}>
+                <form className="commentField" onSubmit={this.handleCreateComment}>
                   <label htmlFor="commentUser">Username:</label>
                   <input type="text" value={window.CS.getBMState().user.username} disabled />
                   <br />
                   <label htmlFor="commentText">Comment:</label>
                   <textarea rows={6} cols={52} maxLength={400} name="description" onChange={this.handleCommentDescription} value={this.state.comment.comment_text}></textarea>
                   <br />
-                  <button type="submit">Add Comment</button>
+                  <button className="commentButton" type="submit" >Add Comment</button>
                 </form>
                 <p>{window.CS.getUIState().Register.errorMessage}</p>
               </div>
@@ -371,9 +367,7 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
             <li className="type"><span className="typeName">Type:</span> <br></br>{" "}{this.props.advertise.advertise_type}</li>
             <li className="status"><span className="statusName">Status:</span> <br></br>{" "}{this.props.advertise.advertise_status}</li>
             <li className="comment"><span className="commentName">Comment:</span> <br></br>{" "}{this.props.advertise.advertise_comment}</li>
-            <li className="message"><span className="messageName">Message:</span> <br></br>{" "}{this.props.advertise.advertise_message}</li>
             <li className="category"><span className="categoryName">Category:</span> <br></br>{" "}{this.props.advertise.advertise_category}</li>
-            <li className="counter"><span className="counterName">Counter:</span> <br></br>{" "}{this.props.advertise.advertise_counter}</li>
           </ul>
         </div>
       );
