@@ -27,6 +27,10 @@ interface IJSXState {
     comment_text: string
   }
 }
+export interface IAdvertisesLoadedAction extends IAction {
+  advertises: IAdvertiseData[];
+  comments: ICommentData[];
+}
 
 export interface IComment extends IAction {
   comment: ICommentData
@@ -72,7 +76,7 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
       }
     };
   }
-  
+
   handleSwitchToEditMode = () => {
     this.setState({ edit_mode: true });
   };
@@ -190,7 +194,7 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
 
   handleCommentUser = (event: any) => {
     let comment = {
-      comment_advertise: window.CS.getBMState().advertises[0]._id,
+      comment_advertise: this.props.advertise._id,
       comment_text: event.target.value,
       comment_user: window.CS.getBMState().user.username
     };
@@ -200,7 +204,7 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
   }
   handleCommentDescription = (event: any) => {
     let comment = {
-      comment_advertise: window.CS.getBMState().advertises[0]._id,
+      comment_advertise: this.props.advertise._id,
       comment_text: event.target.value,
       comment_user: window.CS.getBMState().user.username
     };
@@ -224,10 +228,17 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
             comment_text: ""
           }
         })
-      });
+      })
+    axios.get('/advertises/read').then(response => {
+      const responseAction: IAdvertisesLoadedAction = {
+        type: ActionType.add_advertises_from_server,
+        advertises: response.data[0] as IAdvertiseData[],
+        comments: response.data[1] as ICommentData[]
+      }
+      window.CS.clientAction(responseAction);
+    }).catch(function (error) { console.log(error); });
   }
-   
-  
+
   render() {
     let locationProp = this.props as any;
     //if the component is in edit mode, it will render different than if it just shows the data
@@ -294,9 +305,7 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
           </ul>
         </div>
       );
-    else if (
-      window.CS.getUIState().loggedIn && locationProp.location.pathname === "/showadvertises"
-    ) {
+    else if ( window.CS.getUIState().loggedIn && locationProp.location.pathname === "/showadvertises") {
       return (
         <div className="wholeProduct">
           <ul className="ulProduct">
@@ -308,7 +317,6 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
             <li className="city"><span className="cityName">City:</span>{" "}{this.props.advertise.advertise_city}</li>
             <li className="type"><span className="typeName">Type:</span>{" "}{this.props.advertise.advertise_type}</li>
             <li className="status"><span className="statusName">Status:</span>{" "}<span id={this.props.advertise.advertise_status}>{this.props.advertise.advertise_status}</span></li>
-            <li className="comment"><span className="commentName">Comment:</span> <br></br>{" "}{this.props.advertise.advertise_comment}</li>
             <li className="category"><span className="categoryName">Category:</span> <br></br>{" "}{this.props.advertise.advertise_category}</li>
             <li className="buttonsArea">
               <button className="editButton" onClick={this.handleSwitchToEditMode}>edit</button>
@@ -318,8 +326,8 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
           </ul>
         </div>
       );
-    } else if (window.CS.getUIState().loggedIn) {
-      return ( 
+    } else if (window.CS.getUIState().loggedIn && window.CS.getBMState().user.username === this.props.advertise.advertise_owner){
+      return (
         <div className="wholeProduct">
           <ul className="ulProduct">
             <li className="title">{this.props.advertise.advertise_title}</li>
@@ -330,13 +338,45 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
             <li className="city"><span className="cityName">City:</span>{" "}{this.props.advertise.advertise_city}</li>
             <li className="type"><span className="typeName">Type:</span>{" "}{this.props.advertise.advertise_type}</li>
             <li className="status"><span className="statusName">Status:</span>{" "}<span id={this.props.advertise.advertise_status}>{this.props.advertise.advertise_status}</span></li>
-            <li className="comment"><span className="commentName">Comment:</span> <br></br>{" "}{this.props.advertise.advertise_comment}</li>
+            <li className="comment"><span className="commentName">Comment:</span> <br></br>{window.CS.getBMState()
+              .comments.filter(
+                comment =>
+                  comment.comment_advertise === this.props.advertise._id
+              )
+              .map(comment => (
+                <span>from {comment.comment_user}:{" "}{comment.comment_text}<br></br></span>
+              ))}</li>
+            <li className="category"><span className="categoryName">Category:</span> <br></br>{" "}{this.props.advertise.advertise_category}</li>
+          </ul>
+          
+        </div> 
+      );
+    } else if (window.CS.getUIState().loggedIn) {
+      return (
+        <div className="wholeProduct">
+          <ul className="ulProduct">
+            <li className="title">{this.props.advertise.advertise_title}</li>
+            <li><img className="picture" src={this.props.advertise.advertise_pictureUrl} alt="no pic available" /></li>
+            <li className="price"><span className="priceName">Price:</span>{" "}{this.props.advertise.advertise_price}</li>
+            <li className="description"><span className="descriptionName">Description:</span> <br></br>{" "}{this.props.advertise.advertise_description}</li>
+            <li className="owner"><span className="ownerName">Owner:</span>{" "}{this.props.advertise.advertise_owner}</li>
+            <li className="city"><span className="cityName">City:</span>{" "}{this.props.advertise.advertise_city}</li>
+            <li className="type"><span className="typeName">Type:</span>{" "}{this.props.advertise.advertise_type}</li>
+            <li className="status"><span className="statusName">Status:</span>{" "}<span id={this.props.advertise.advertise_status}>{this.props.advertise.advertise_status}</span></li>
+            <li className="comment"><span className="commentName">Comment:</span> <br></br>{window.CS.getBMState()
+              .comments.filter(
+                comment =>
+                  comment.comment_advertise === this.props.advertise._id
+              )
+              .map(comment => (
+                <span>from {comment.comment_user}:{" "}{comment.comment_text}<br></br></span>
+              ))}</li>
             <li className="category"><span className="categoryName">Category:</span> <br></br>{" "}{this.props.advertise.advertise_category}</li>
           </ul>
           <ul>
             <li>
               <div>
-                <form className="commentField" onSubmit={this.handleCreateComment}>
+                <form className="commentField" onSubmit={this.handleCreateComment} >
                   <label htmlFor="commentUser">Username:</label>
                   <input type="text" value={window.CS.getBMState().user.username} disabled />
                   <br />
@@ -351,7 +391,7 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
           </ul>
         </div>
       );
-    } else { 
+    } else {
       return (
         <div className="wholeProduct">
           <ul className="ulProduct">
@@ -363,7 +403,14 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
             <li className="city"><span className="cityName">City:</span>{" "}{this.props.advertise.advertise_city}</li>
             <li className="type"><span className="typeName">Type:</span>{" "}{this.props.advertise.advertise_type}</li>
             <li className="status"><span className="statusName">Status:</span>{" "}<span id={this.props.advertise.advertise_status}>{this.props.advertise.advertise_status}</span></li>
-            <li className="comment"><span className="commentName">Comment:</span> <br></br>{" "}{this.props.advertise.advertise_comment}</li>
+            <li className="comment"><span className="commentName">Comment:</span> <br></br>{window.CS.getBMState()
+              .comments.filter(
+                comment =>
+                  comment.comment_advertise === this.props.advertise._id
+              )
+              .map(comment => (
+                <span>from {comment.comment_user}:{" "}{comment.comment_text}<br></br></span>
+              ))}</li>
             <li className="category"><span className="categoryName">Category:</span> <br></br>{" "}{this.props.advertise.advertise_category}</li>
           </ul>
         </div>
