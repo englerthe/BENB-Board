@@ -194,7 +194,7 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
 
   handleCommentUser = (event: any) => {
     let comment = {
-      comment_advertise: window.CS.getBMState().advertises[0]._id,
+      comment_advertise: this.props.advertise._id,
       comment_text: event.target.value,
       comment_user: window.CS.getBMState().user.username
     };
@@ -204,7 +204,7 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
   }
   handleCommentDescription = (event: any) => {
     let comment = {
-      comment_advertise: window.CS.getBMState().advertises[0]._id,
+      comment_advertise: this.props.advertise._id,
       comment_text: event.target.value,
       comment_user: window.CS.getBMState().user.username
     };
@@ -213,7 +213,7 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
     })
   }
 
-  handleCreateComment = (e: any, advertiseId: string) => {
+  handleCreateComment = (e: any) => {
     e.preventDefault();
     const uiAction: IAction = {
       type: ActionType.server_called
@@ -344,7 +344,7 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
                   comment.comment_advertise === this.props.advertise._id
               )
               .map(comment => (
-                <span>from: {comment.comment_user}:{" "}{comment.comment_text}<br></br></span>
+                <span>from {comment.comment_user}:{" "}{comment.comment_text}<br></br></span>
               ))}</li>
             <li className="category"><span className="categoryName">Category:</span> <br></br>{" "}{this.props.advertise.advertise_category}</li>
           </ul>
@@ -369,14 +369,14 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
                   comment.comment_advertise === this.props.advertise._id
               )
               .map(comment => (
-                <span>from: {comment.comment_user}:{" "}{comment.comment_text}<br></br></span>
+                <span>from {comment.comment_user}:{" "}{comment.comment_text}<br></br></span>
               ))}</li>
             <li className="category"><span className="categoryName">Category:</span> <br></br>{" "}{this.props.advertise.advertise_category}</li>
           </ul>
           <ul>
             <li>
-              <div> 
-                <form className="commentField" onSubmit={(e) => this.handleCreateComment(e, this.props.advertise._id)} >
+              <div>
+                <form className="commentField" onSubmit={this.handleCreateComment} >
                   <label htmlFor="commentUser">Username:</label>
                   <input type="text" value={window.CS.getBMState().user.username} disabled />
                   <br />
@@ -409,7 +409,7 @@ export default class SingleAdvertise extends React.PureComponent<IProps, IJSXSta
                   comment.comment_advertise === this.props.advertise._id
               )
               .map(comment => (
-                <span>from: {comment.comment_user}:{" "}{comment.comment_text}<br></br></span>
+                <span>from {comment.comment_user}:{" "}{comment.comment_text}<br></br></span>
               ))}</li>
             <li className="category"><span className="categoryName">Category:</span> <br></br>{" "}{this.props.advertise.advertise_category}</li>
           </ul>
